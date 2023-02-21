@@ -1,4 +1,4 @@
-package ru.lexun.argcloud.config;
+package ru.lexun.argcloud.services;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

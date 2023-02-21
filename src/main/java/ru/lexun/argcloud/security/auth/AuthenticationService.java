@@ -4,7 +4,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.lexun.argcloud.config.JwtService;
+import ru.lexun.argcloud.services.JwtService;
 import ru.lexun.argcloud.models.Role;
 import ru.lexun.argcloud.models.User;
 import ru.lexun.argcloud.repositories.UserRepository;

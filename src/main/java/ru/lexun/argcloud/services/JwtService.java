@@ -1,4 +1,4 @@
-package ru.lexun.argcloud.config;
+package ru.lexun.argcloud.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

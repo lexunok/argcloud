@@ -1,6 +1,5 @@
-package ru.lexun.argcloud.config;
+package ru.lexun.argcloud.security;
 
-import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+import ru.lexun.argcloud.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -28,10 +28,10 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+              //  .requestMatchers("/auth/**")
+             //   .permitAll()
+                .anyRequest().permitAll()
+               // .authenticated()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
