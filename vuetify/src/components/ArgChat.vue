@@ -1,10 +1,10 @@
 <template>
     <div>
-        <v-row no-gutters>
+        <v-row>
             <v-col cols="4">
                 <v-card id="chatlist"
                         max-width="300">
-                    <v-toolbar color="purple-darken-3">
+                    <v-toolbar color="deep-purple-darken-1">
                         <v-spacer></v-spacer>
                         <form><input type="text" placeholder="Поиск" /></form>
                         <v-btn variant="text" icon="mdi-magnify"></v-btn>
@@ -23,7 +23,7 @@
             </v-col>
             <v-col cols="8">
                 <transition name="component-fade" mode="out-in" v-if="InChat">
-                    <ArgInChat title={{props.title}} />
+                    <ArgInChat />
                 </transition>
             </v-col>
         </v-row>
@@ -84,6 +84,6 @@
 
     #chatlist {
         left: 200px;
-        top: 0;
+        top: 54px;
     }
 </style>

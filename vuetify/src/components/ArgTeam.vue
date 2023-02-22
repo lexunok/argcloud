@@ -1,28 +1,18 @@
 <template>
     <div>
-        <v-card class="mx-auto"
-                max-width="600">
-            <v-toolbar color="purple-darken-1">
-                <v-spacer></v-spacer>
-                <form><input type="text" placeholder="Поиск" size="50"/></form>
-                <v-btn variant="text" icon="mdi-magnify"></v-btn>
-                <v-spacer></v-spacer>
-            </v-toolbar>
-
-            <v-list :items="items"
-                    item-props
-                    lines="three">
-                <template v-slot:subtitle="{ subtitle }">
-                    <div v-html="subtitle"></div>
-                </template>
-            </v-list>
-        </v-card>
+        <v-row no-gutters>
+            <transition>
+              <ArgTeamChat />
+            </transition>
+        </v-row>
     </div>
 </template>
 <script>
-    export default {
+    import ArgTeamChat from "./ArgTeamChat.vue"
+  export default {
+    components: { ArgTeamChat },
         data() {
-            return {
+          return {
                 items: [
                     { type: 'divider', inset: true },
                     {

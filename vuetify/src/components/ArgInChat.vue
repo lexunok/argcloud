@@ -1,40 +1,57 @@
 <template>
-    <v-card width="750" height="500" color="deep-purple-lighten-4" id="chat">
-        <v-card-subtitle>Онлайн: null</v-card-subtitle>
-        <v-divider></v-divider>
-        <v-card-text style="height: 300px;">
-            <v-list>
-                <v-list-item v-for="message in messages"
-                             :key="message.time"
-                             :prepend-avatar="message.avatar">
-                    <div>{{message.who}} {{message.time}}</div>
-                    <div>{{message.message}}</div>
-                </v-list-item>
-            </v-list>
-        </v-card-text>
-        <v-divider></v-divider>
-        <v-card-text class="deep-purple-lighten-1">
-            <v-row>
-                <v-col cols="2">
-                    <v-btn icon="mdi-plus-box-outline" variation="plain"></v-btn>
-                </v-col>
-                <v-col cols="10">
-                    <v-text-field clearable
-                                  label="Введите сообщение"
-                                  icon-type="file"
-                                  variant="underlined"></v-text-field>
-                </v-col>
-            </v-row>
-        </v-card-text>
-        <v-card-actions></v-card-actions>
+  <v-card width="750" height="515" color="deep-purple-darken-1" id="chat">
+    <v-card-title>заголовок</v-card-title>
+    <v-card-subtitle>Онлайн: null</v-card-subtitle>
+    <v-divider></v-divider>
+    <v-row no-gutters justify="center">
+      <v-card width="750" height="350" color="deep-purple-darken-2" :rounded="0">
+        <v-list bg-color="deep-purple-darken-2">
+          <v-list-items v-for="message in messages"
+                        :key="message.time"
+                        :prepend-avatar="message.avatar">
+            <div id="chatmessage" class="rounded-xl rounded-bs-0"><p>{{message.who}} {{message.time}}</p><p>{{message.message}}</p></div>
+          </v-list-items>
+        </v-list>
+      </v-card>
+    </v-row>
+    <v-divider></v-divider>
+    <v-card :rounded="0" color="deep-purple-darken-2">
+      <v-form>
+        <v-row>
+          <v-col cols="1">
+            <v-spacer></v-spacer>
+          </v-col>
+          <v-col cols="10" id="textinput">
+            <v-card class="rounded-lg">
+              <v-text-field v-model="message"
+                            append-icon="mdi-send"
+                            prepend-icon="mdi-plus-box-outline"
+                            variant="underlined"
+                            clear-icon="mdi-close-circle"
+                            clearable
+                            label="Введите сообщение"
+                            type="text"
+                            @click:append="sendMessage"
+                            @click:clear="clearMessage"></v-text-field>
+            </v-card>
+          </v-col>
+          <v-col cols="1">
+            <v-spacer></v-spacer>
+          </v-col>
+        </v-row>
+      </v-form>
     </v-card>
+  </v-card>
 </template>
 <script>
+  import "axios"
+  import axios from "axios";
     export default {
         data() {
             return {
                 icon: null,
                 title: 'Заголовок',
+                message: null,
                 messages: [
                     {
                         who: 'Вадим',
@@ -49,14 +66,27 @@
                         avatar: null
                     }
                     ]
-                }
+            } 
+
+        },
+        created() {
+          axios.get("http://localhost:8080/chat")
+            .then(response => this.messages = response.data)
+        },
+        methods: {
+          sendMessage() {
+              axios.post("http://localhost:8080/chat", { text: this.message })
+                .then(function (response) {
+                }.bind(this));
+            this.clearMessage()
+          },
+          clearMessage() {
+            this.message = ''
+          },
         }
-        }
+    }
 </script>
 <style>
-    #test{
-        color: red;
-    }
     v-divider {
         color: black;
     }
@@ -65,6 +95,21 @@
     }
     #chat {
         left: 25px;
-        top: 0;
+        top: 54px;
     }
+  #chatmessage {
+    margin: 15px;
+    padding: 5px;
+    color: black;
+    background: white;
+  }
+  #textinput {
+    background: #512DA8;
+    color: black;
+    padding: 25px;
+  }
+  #textinputspace {
+    color: #512DA8;
+  }
+  
 </style>
