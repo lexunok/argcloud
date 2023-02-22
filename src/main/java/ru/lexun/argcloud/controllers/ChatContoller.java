@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/chat")
-@CrossOrigin(origins = "http://localhost:3000")
 public class ChatContoller {
     private final MessageService messageService;
     private final Mapper mapper;

@@ -20,12 +20,12 @@ import axios from "axios";
         }
     },
     created(){
-        axios.get("http://localhost:8080/chat")
+        axios.get("/chat")
         .then(response => this.messages = response.data)
     },
     methods:{
         postMessage(){
-            axios.post("http://localhost:8080/chat",{text:this.text})
+            axios.post("/chat",{text:this.text})
             .then(function( response ){
                 }.bind(this));
         },

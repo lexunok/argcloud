@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.0.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>ru.lexun</groupId>
 	<artifactId>argcloud</artifactId>
@@ -21,7 +21,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -38,17 +37,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
@@ -69,8 +65,6 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.5</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -96,5 +90,72 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>Build</id>
+			<activation><activeByDefault>true</activeByDefault></activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.eirslett</groupId>
+						<artifactId>frontend-maven-plugin</artifactId>
+						<version>1.12.1</version>
+						<configuration>
+							<workingDirectory>./src/frontend</workingDirectory>
+						</configuration>
+						<executions>
+							<execution>
+								<id>install node and yarn</id>
+								<goals>
+									<goal>install-node-and-yarn</goal>
+								</goals>
+								<phase>generate-resources</phase>
+								<configuration>
+									<nodeVersion>v18.13.0</nodeVersion>
+									<yarnVersion>v1.22.19</yarnVersion>
+								</configuration>
+							</execution>
+							<execution>
+								<id>yarn install</id>
+								<goals>
+									<goal>yarn</goal>
+								</goals>
+								<configuration>
+									<arguments>install</arguments>
+								</configuration>
+							</execution>
+							<execution>
+								<id>yarn build</id>
+								<goals>
+									<goal>yarn</goal>
+								</goals>
+								<configuration>
+									<arguments>build</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-build-folder</id>
+								<phase>process-classes</phase>
+								<goals><goal>copy-resources</goal></goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>/src/frontend/dist</directory>
+										</resource>
+									</resources>
+									<outputDirectory>${basedir}/target/classes/static</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
