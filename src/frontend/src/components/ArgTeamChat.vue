@@ -9,7 +9,7 @@
         <v-card-subtitle>Онлайн: null</v-card-subtitle>
         <v-divider></v-divider>
         <v-row no-gutters justify="center">
-          <v-card width="750" height="350" color="deep-purple-darken-2" :rounded="0">
+          <v-card width="750" height="350" color="deep-purple-darken-2" :rounded="0" id="smslist">
             <v-list bg-color="deep-purple-darken-2">
               <v-list-items v-for="text in messages">
                 <div id="chatmessage" class="rounded-xl rounded-bs-0"><p>{{text.text}}</p></div>
@@ -19,7 +19,7 @@
         </v-row>
         <v-divider></v-divider>
         <v-card :rounded="0" color="deep-purple-darken-2">
-          <v-form>
+          <v-form method="post" onkeypress="if(event.keyCode == 13) return false;">
             <v-row>
               <v-col cols="1">
                 <v-spacer></v-spacer>
@@ -57,10 +57,42 @@
     export default {
         data() {
             return {
-                icon: null,
+              icon: null,
+              scrollInvoked: 0,
                 title: 'Заголовок',
                 message: null,
-                messages: null
+              messages: [
+                {
+                  text: 'мусор'
+                },
+                {
+                  text: 'мусор'
+                },
+                {
+                  text: 'мусор'
+                },
+                {
+                  text: 'мусор'
+                },
+                {
+                  text: 'мусор'
+                },
+                {
+                  text: 'мусор'
+                },
+                {
+                  text: 'мусор1'
+                },
+                {
+                  text: 'мусор4'
+                },
+                {
+                  text: 'мусор3'
+                },
+                {
+                  text: 'мусор2'
+                },
+              ]
             }
 
         },
@@ -77,6 +109,9 @@
           },
           clearMessage() {
             this.message = ''
+          },
+          onScroll() {
+            this.scrollInvoked++
           },
         }
     }
@@ -107,4 +142,21 @@
   #textinputspace {
     color: #512DA8;
   }
+  #smslist {
+    overflow-y: auto;
+  }
+    #smslist::-webkit-scrollbar {
+      width: 10px;
+      background-color: #512DA8;
+    }
+
+  #smslist::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: white;
+  }
+
+    #smslist::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: #512DA8;
+    }
 </style>
