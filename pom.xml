@@ -10,11 +10,13 @@
 	</parent>
 	<groupId>ru.lexun</groupId>
 	<artifactId>argcloud</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>v1</version>
 	<name>argcloud</name>
 	<description>///</description>
 	<properties>
 		<java.version>19</java.version>
+		<app.image.name>argcloud</app.image.name>
+		<app.image.tag/>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -68,12 +70,11 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.5.3</version>
+			<version>42.5.4</version>
 		</dependency>
 
 
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -92,7 +93,7 @@
 	</build>
 	<profiles>
 		<profile>
-			<id>Build</id>
+			<id>build-frontend</id>
 			<activation><activeByDefault>true</activeByDefault></activation>
 			<build>
 				<plugins>

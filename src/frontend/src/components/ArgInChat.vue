@@ -50,38 +50,7 @@
                 icon: null,
                 title: 'Заголовок',
                 message: null,
-              messages: [
-                {
-                  text: 'мусор'
-                },
-                {
-                  text: 'мусор'
-                },
-                {
-                  text: 'мусор'
-                },
-                {
-                  text: 'мусор'
-                },
-                {
-                  text: 'мусор'
-                },
-                {
-                  text: 'мусор'
-                },
-                {
-                  text: 'мусор1'
-                },
-                {
-                  text: 'мусор4'
-                },
-                {
-                  text: 'мусор3'
-                },
-                {
-                  text: 'мусор2'
-                },
-              ]
+              messages: null
             }
 
         },
