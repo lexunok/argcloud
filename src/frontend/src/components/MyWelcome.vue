@@ -14,42 +14,47 @@
             <v-divider></v-divider>
             <v-list density="compact"
                     nav>
-                <v-list-item link
-                             prepend-icon="mdi-newspaper"
-                             title="Новости">
-                </v-list-item>
-                <v-list-item link
-                             prepend-icon="mdi-account-group"
-                             @click="view='ArgTeam'"
-                             title="Команда">
-                    <template v-slot:append>
-                        <v-badge color="info"
-                                 content="1"
-                                 inline>
-                        </v-badge>
-                    </template>
-                </v-list-item>
-                <v-list-item link
-                             v-on:click="view = 'ArgChat'"
-                             prepend-icon="mdi-forum"
-                             title="Чат">
-                    <template v-slot:append>
-                        <v-badge color="error"
-                                 content="31"
-                                 inline>
-                        </v-badge>
-                    </template>
-                </v-list-item>
+              <v-list-item link
+                           prepend-icon="mdi-newspaper"
+                           title="Новости">
+              </v-list-item>
+              <v-list-item link
+                           prepend-icon="mdi-account-group"
+                           @click="view='ArgTeam'"
+                           title="Команда">
+                <template v-slot:append>
+                  <v-badge color="info"
+                           content="1"
+                           inline>
+                  </v-badge>
+                </template>
+              </v-list-item>
+              <v-list-item link
+                           v-on:click="view = 'ArgChat'"
+                           prepend-icon="mdi-forum"
+                           title="Чат">
+                <template v-slot:append>
+                  <v-badge color="error"
+                           content="31"
+                           inline>
+                  </v-badge>
+                </template>
+              </v-list-item>
 
-                <v-list-item link
-                             @click="view = 'ArgFiles'"
-                             prepend-icon="mdi-folder"
-                             title="Мои файлы">
-                </v-list-item>
-                <v-list-item link
-                             prepend-icon="mdi-hammer-screwdriver"
-                             title="Инструменты">
-                </v-list-item>
+              <v-list-item link
+                           @click="view = 'ArgFiles'"
+                           prepend-icon="mdi-folder"
+                           title="Мои файлы">
+              </v-list-item>
+              <v-list-item link
+                           prepend-icon="mdi-hammer-screwdriver"
+                           title="Инструменты">
+              </v-list-item>
+              <v-list-item link
+                           prepend-icon="mdi-exit-to-app"
+                           title="Выйти"
+                           to="/">
+              </v-list-item>
             </v-list>
         </v-navigation-drawer>
 
