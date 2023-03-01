@@ -14,7 +14,7 @@
 	<name>argcloud</name>
 	<description>///</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>17</java.version>
 		<app.image.name>argcloud</app.image.name>
 		<app.image.tag/>
 	</properties>

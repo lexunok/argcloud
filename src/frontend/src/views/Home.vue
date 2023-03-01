@@ -4,6 +4,9 @@
   </v-app>
 </template>
 
-<script setup>
+<script>
   import MyWelcome from "../components/MyWelcome.vue"
+  export default{
+    components: {MyWelcome},
+  }
 </script>
