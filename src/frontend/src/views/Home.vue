@@ -5,8 +5,14 @@
 </template>
 
 <script>
-  import MyWelcome from "../components/MyWelcome.vue"
+  import axios from "axios";
+import MyWelcome from "../components/MyWelcome.vue"
   export default{
     components: {MyWelcome},
+    methods:{
+      async created(){
+          const response = await axios.get("/app/profile")
+      }
+    }
   }
 </script>
