@@ -105,4 +105,7 @@
     .component-fade-leave-to {
         opacity: 0;
     }
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 </style>
