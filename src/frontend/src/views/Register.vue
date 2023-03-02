@@ -20,6 +20,12 @@
             </v-col>
             <v-col cols="8">
               <v-container>
+                <v-text-field v-model="fullname"
+                              variant="outlined"
+                              clear-icon="mdi-close-circle"
+                              clearable
+                              label="Введите имя и фамилию"
+                              type="text"></v-text-field>
                 <v-text-field v-model="username"
                               variant="outlined"
                               clear-icon="mdi-close-circle"
@@ -67,6 +73,7 @@ import axios from 'axios'
   export default {
     data() {
       return {
+        fullname: "",
         username: "",
         email: "",
         password: ""
@@ -77,17 +84,20 @@ import axios from 'axios'
         const data={
             username: this.username,
             email: this.email,
-            password: this.password
+            password: this.password,
+            fullname: this.fullname
         }
-        const response = await axios.post("app/auth/register", data)
+        const response = await axios.post("api/auth/register", data)
         this.$router.push("/login")
       },
       clearForm(){
         this.username = "",
         this.password = "",
-        this.email = ""
+        this.email = "",
+        this.fullname = ""
+
       }
-      
+
     }
 }
 </script>

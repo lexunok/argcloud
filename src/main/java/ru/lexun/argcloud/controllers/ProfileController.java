@@ -1,26 +1,25 @@
 package ru.lexun.argcloud.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.lexun.argcloud.models.User;
-import ru.lexun.argcloud.repositories.UserRepository;
-
-import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import ru.lexun.argcloud.config.Mapper;
+import ru.lexun.argcloud.dto.UserDTO;
+import ru.lexun.argcloud.services.ProfileService;
 
 @RestController
-@RequestMapping("/app/profile")
+@RequestMapping("/api/profile")
 public class ProfileController {
-    private final UserRepository userRepository;
+    private final ProfileService profileService;
+    private final Mapper mapper;
     @Autowired
-    public ProfileController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public ProfileController(ProfileService profileService, Mapper mapper) {
+        this.profileService = profileService;
+        this.mapper = mapper;
     }
-
-
     @GetMapping
-    public List<User> getUsers(){
-        return userRepository.findAll();
+    public UserDTO getUser(@RequestParam(name = "username") String username){
+        return mapper.toUserDTO(
+                        profileService.getUser(username));
     }
 }

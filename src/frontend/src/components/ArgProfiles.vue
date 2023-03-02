@@ -7,7 +7,7 @@
         </v-col>
         <v-col cols="11" align-self="center">
           <v-container>
-            <div id="profile_username">Вадим Власов</div>
+            <div id="profile_username">{{fullname}}</div>
           </v-container>
         </v-col>
       </v-row>
@@ -19,7 +19,15 @@
 <script>
   import ArgProfilesFriendList from './ArgProfilesFriendList.vue'
   export default {
-    components: { ArgProfilesFriendList }
+    components: { ArgProfilesFriendList },
+    data(){
+      return{
+        fullname: ""
+      }}
+    ,
+    created(){
+      this.fullname = localStorage.getItem("fullname")
+    }
   }
 </script>
 <style>

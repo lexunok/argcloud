@@ -18,6 +18,10 @@ const routes = [
         path: '/login',
         component: () => import( '@/views/Login.vue'),
       },
+      {
+        path: '/profile',
+        component: () => import( '@/components/ArgProfiles.vue'),
+      },
 ]
 
 const router = createRouter({

@@ -7,8 +7,9 @@
             <v-list>
                 <v-list-item link
                              prepend-avatar="https://sun9-72.userapi.com/impg/sSMS9MNN9xky5pcna_waJsBtW8ZnYRM9ylh4EA/DYxe5sM6rQ0.jpg?size=720x1080&quality=95&sign=c6196736bbc8530861f290e2d5901be6&type=album"
-                             title="Вадим Власов"
-                             @click="view='ArgProfiles'">
+                             :title="fullname"
+                             :subtitle="username"
+                             to="/profile">
                 </v-list-item>
             </v-list>
             <v-divider></v-divider>
@@ -16,8 +17,7 @@
                     nav>
               <v-list-item link
                            prepend-icon="mdi-newspaper"
-                           title="Новости"
-                           @click="view='ArgNews'">
+                           title="Новости">
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-account-group"
@@ -49,8 +49,7 @@
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-hammer-screwdriver"
-                           title="Инструменты"
-                           @click="view='ArgTools'">
+                           title="Инструменты">
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-exit-to-app"
@@ -69,26 +68,29 @@
 </template>
 
 <script>
-  /**
-  *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
-  *  ��� ���������� �������������. ������ ������ ������ �� �����.
-  */
+    /**
+    *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
+    *  ��� ���������� �������������. ������ ������ ������ �� �����.
+    */
     import ArgFiles from "./ArgFiles.vue"
     import ArgChat from "./ArgChat.vue"
-  import ArgTeam from "./ArgTeam.vue"
-  import ArgProfiles from "./ArgProfiles.vue"
-  import ArgNews from "./ArgNews.vue"
-  import ArgTools from "./ArgTools.vue"
+    import ArgTeam from "./ArgTeam.vue"
 
     export default {
         head: {
             title: "ArgCloud"
             },
-    components: { ArgFiles, ArgChat, ArgTeam, ArgProfiles, ArgNews, ArgTools},
+        components: { ArgFiles, ArgChat, ArgTeam },
         data() {
             return {
-                view: null
+                view: null,
+                fullname: "",
+                username: ""
             }
+        },
+        created(){
+            this.fullname = localStorage.getItem("fullname")
+            this.username ="@"+ localStorage.getItem("username")
         },
         methods: {
             tap() {

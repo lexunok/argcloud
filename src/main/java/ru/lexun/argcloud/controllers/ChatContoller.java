@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("app/chat")
+@RequestMapping("api/chat")
 public class ChatContoller {
     private final MessageService messageService;
     private final Mapper mapper;

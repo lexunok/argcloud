@@ -66,9 +66,12 @@
             username: this.username,
             password: this.password
         }
-        const response = await axios.post("app/auth/login", data)
-        console.log(response)
+        const response = await axios.post("api/auth/login", data)
         localStorage.setItem("token",response.data.token)
+        const user = await axios.get("/api/profile",{params:{username:data.username}})
+        localStorage.setItem("username", user.data.username)
+        localStorage.setItem("fullname", user.data.fullname)
+        localStorage.setItem("email", user.data.email)
         this.$router.push("/home")
       }
 
