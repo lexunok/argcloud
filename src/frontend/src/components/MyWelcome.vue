@@ -16,7 +16,8 @@
                     nav>
               <v-list-item link
                            prepend-icon="mdi-newspaper"
-                           title="Новости">
+                           title="Новости"
+                           @click="view='ArgNews'">
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-account-group"
@@ -48,7 +49,8 @@
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-hammer-screwdriver"
-                           title="Инструменты">
+                           title="Инструменты"
+                           @click="view='ArgTools'">
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-exit-to-app"
@@ -75,12 +77,14 @@
     import ArgChat from "./ArgChat.vue"
   import ArgTeam from "./ArgTeam.vue"
   import ArgProfiles from "./ArgProfiles.vue"
+  import ArgNews from "./ArgNews.vue"
+  import ArgTools from "./ArgTools.vue"
 
     export default {
         head: {
             title: "ArgCloud"
             },
-    components: { ArgFiles, ArgChat, ArgTeam, ArgProfiles },
+    components: { ArgFiles, ArgChat, ArgTeam, ArgProfiles, ArgNews, ArgTools},
         data() {
             return {
                 view: null
