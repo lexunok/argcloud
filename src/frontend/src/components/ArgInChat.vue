@@ -1,7 +1,19 @@
 <template>
-  <v-card width="750" height="515" color="deep-purple-darken-1" id="chat">
-    <v-card-title>заголовок</v-card-title>
-    <v-card-subtitle>Онлайн: null</v-card-subtitle>
+  <v-card width="750" max-height="600" color="#5E35B1" id="chat">
+    <v-card-title id="chattitle">
+      <v-container>
+        <v-row justify="center">
+          ЗАГОЛОВОК
+        </v-row>
+      </v-container>
+    </v-card-title >
+    <v-card-subtitle id="chattitle">
+      <v-container>
+        <v-row justify="center">
+          Онлайн: 0
+        </v-row>
+      </v-container>
+    </v-card-subtitle>
     <v-divider></v-divider>
     <v-row no-gutters justify="center">
       <v-card width="750" height="350" color="deep-purple-darken-2" :rounded="0" id="smslist">
@@ -14,7 +26,7 @@
     </v-row>
     <v-divider></v-divider>
     <v-card :rounded="0" color="deep-purple-darken-2">
-      <v-form method="post" onkeypress="if(event.keyCode == 13) return false;">
+      <v-container>
         <v-row>
           <v-col cols="1">
             <v-spacer></v-spacer>
@@ -30,14 +42,15 @@
                             label="Введите сообщение"
                             type="text"
                             @click:append="sendMessage"
-                            @click:clear="clearMessage"></v-text-field>
+                            @click:clear="clearMessage"
+                            @keyup.enter="sendMessage"></v-text-field>
             </v-card>
           </v-col>
           <v-col cols="1">
             <v-spacer></v-spacer>
           </v-col>
         </v-row>
-      </v-form>
+      </v-container>
     </v-card>
   </v-card>
 </template>
@@ -72,6 +85,9 @@
     }
 </script>
 <style>
+  #chattitle {
+    color: white;
+  }
     v-divider {
         color: black;
     }
@@ -91,7 +107,6 @@
   #textinput {
     background: #512DA8;
     color: black;
-    padding: 25px;
   }
   #textinputspace {
     color: #512DA8;
