@@ -8,7 +8,7 @@
                 <v-list-item link
                              prepend-avatar="https://sun9-72.userapi.com/impg/sSMS9MNN9xky5pcna_waJsBtW8ZnYRM9ylh4EA/DYxe5sM6rQ0.jpg?size=720x1080&quality=95&sign=c6196736bbc8530861f290e2d5901be6&type=album"
                              title="Вадим Власов"
-                             subtitle="@Flako">
+                             @click="view='ArgProfiles'">
                 </v-list-item>
             </v-list>
             <v-divider></v-divider>
@@ -67,19 +67,20 @@
 </template>
 
 <script>
-    /**
-    *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
-    *  ��� ���������� �������������. ������ ������ ������ �� �����.
-    */
+  /**
+  *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
+  *  ��� ���������� �������������. ������ ������ ������ �� �����.
+  */
     import ArgFiles from "./ArgFiles.vue"
     import ArgChat from "./ArgChat.vue"
-    import ArgTeam from "./ArgTeam.vue"
+  import ArgTeam from "./ArgTeam.vue"
+  import ArgProfiles from "./ArgProfiles.vue"
 
     export default {
         head: {
             title: "ArgCloud"
             },
-        components: { ArgFiles, ArgChat, ArgTeam },
+    components: { ArgFiles, ArgChat, ArgTeam, ArgProfiles },
         data() {
             return {
                 view: null
