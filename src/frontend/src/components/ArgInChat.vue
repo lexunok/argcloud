@@ -68,12 +68,12 @@
 
         },
         created() {
-          axios.get("/chat")
+          axios.get("app/chat")
             .then(response => this.messages = response.data)
         },
         methods: {
           sendMessage() {
-              axios.post("/chat", { text: this.message })
+              axios.post("app/chat", { text: this.message })
                 .then(function (response) {
                 }.bind(this));
             this.clearMessage()

@@ -25,25 +25,19 @@
                               clear-icon="mdi-close-circle"
                               clearable
                               label="Введите имя пользователя"
-                              type="text"
-                              @click:append="sendUsername"
-                              @click:clear="clearUsername"></v-text-field>
+                              type="text"></v-text-field>
                 <v-text-field v-model="email"
                               variant="outlined"
                               clear-icon="mdi-close-circle"
                               clearable
                               label="Введите почту"
-                              type="email"
-                              @click:append="sendEmail"
-                              @click:clear="clearEmail"></v-text-field>
+                              type="email"></v-text-field>
                 <v-text-field v-model="password"
                               variant="outlined"
                               clear-icon="mdi-close-circle"
                               clearable
                               label="Введите пароль"
-                              type="password"
-                              @click:append="sendPassword"
-                              @click:clear="clearPassword"></v-text-field>
+                              type="password"></v-text-field>
               </v-container>
             </v-col>
             <v-col cols="2">
@@ -52,8 +46,7 @@
           </v-row>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn id="buttons" append-icon="mdi-chevron-right" to="/home">Зарегестрироваться</v-btn>
-            <v-btn id="buttons" append-icon="mdi-close-circle-outline" @click="clearForm">Очистить</v-btn>
+            <v-btn id="buttons" append-icon="mdi-chevron-right" @click="sendForm">Зарегестрироваться</v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -65,6 +58,8 @@
   </v-app>
 </template>
 <script>
+import axios from 'axios'
+
   /**
     *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
     *  ��� ���������� �������������. ������ ������ ������ �� �����.
@@ -72,38 +67,27 @@
   export default {
     data() {
       return {
-        username: null,
-        email: null,
-        password: null
+        username: "",
+        email: "",
+        password: ""
       }
     },
     methods: {
-      sendUsername() {
-        this.clearUsername()
+      async sendForm() {
+        const data={
+            username: this.username,
+            email: this.email,
+            password: this.password
+        }
+        const response = await axios.post("app/auth/register", data)
+        this.$router.push("/login")
       },
-      sendEmail() {
-        this.clearEmail()
-      },
-      sendPassword() {
-        this.clearPassword()
-      },
-      clearUsername() {
-        this.username = ''
-      },
-      clearEmail() {
-        this.email = ''
-      },
-      clearPassword() {
-        this.password = ''
-      },
-      sendForm() {
-        this.clearForm()
-      },
-      clearForm() {
-        this.clearUsername()
-        this.clearEmail()
-        this.clearPassword()
+      clearForm(){
+        this.username = "",
+        this.password = "",
+        this.email = ""
       }
+      
     }
 }
 </script>
