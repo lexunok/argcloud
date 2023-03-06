@@ -39,11 +39,11 @@
         friends: [
 
           {
-            avatar: 'https://sun9-20.userapi.com/impg/8D8kSUwnpPLBo4Sbwcb5FGuIviN4GA-q9d83ZQ/vqmo3qz6PTI.jpg?size=1440x1920&quality=95&sign=9cf1622a71daec5f66cd70a9e6a7188f&type=album',
+            avatar: 'https://lezgigazet.ru/wp-content/uploads/2020/11/nonimg.jpg',
             name: 'Александр Черненко'
           },
           {
-            avatar: 'https://sun9-40.userapi.com/impg/BGgoHy0rCjQMKfLFT4ImCiCe9aU_UgY5J79kGQ/3y220UOG5MM.jpg?size=640x640&quality=95&sign=7838590b7f6c673625bdfd0f1208adfd&type=album',
+            avatar: 'https://lezgigazet.ru/wp-content/uploads/2020/11/nonimg.jpg',
             name: 'Овчинников Станислав'
           },
         ]

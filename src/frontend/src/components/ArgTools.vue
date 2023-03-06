@@ -6,7 +6,7 @@
                          rail>
       <v-list>
         <v-list-item link
-                     prepend-avatar="https://sun9-72.userapi.com/impg/sSMS9MNN9xky5pcna_waJsBtW8ZnYRM9ylh4EA/DYxe5sM6rQ0.jpg?size=720x1080&quality=95&sign=c6196736bbc8530861f290e2d5901be6&type=album"
+                     prepend-avatar="https://lezgigazet.ru/wp-content/uploads/2020/11/nonimg.jpg"
                      :title="fullname"
                      :subtitle="username"
                      to="/profile">
