@@ -17,11 +17,12 @@
                     nav>
               <v-list-item link
                            prepend-icon="mdi-newspaper"
-                           title="Новости">
+                           title="Новости"
+                           to="/news">
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-account-group"
-                           @click="view='ArgTeam'"
+                           to="/team"
                            title="Команда">
                 <template v-slot:append>
                   <v-badge color="info"
@@ -31,7 +32,7 @@
                 </template>
               </v-list-item>
               <v-list-item link
-                           v-on:click="view = 'ArgChat'"
+                           to="/chat"
                            prepend-icon="mdi-forum"
                            title="Чат">
                 <template v-slot:append>
@@ -45,11 +46,13 @@
               <v-list-item link
                            @click="view = 'ArgFiles'"
                            prepend-icon="mdi-folder"
-                           title="Мои файлы">
+                           title="Мои файлы"
+                           to="/files">
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-hammer-screwdriver"
-                           title="Инструменты">
+                           title="Инструменты"
+                           to="/tools">
               </v-list-item>
               <v-list-item link
                            prepend-icon="mdi-exit-to-app"
@@ -60,9 +63,6 @@
         </v-navigation-drawer>
 
         <v-main>
-            <transition name="component-fade" mode="out-in">
-                <component :is="view"></component>
-            </transition>
         </v-main>
     </v-app>
 </template>
@@ -72,18 +72,13 @@
     *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
     *  ��� ���������� �������������. ������ ������ ������ �� �����.
     */
-    import ArgFiles from "./ArgFiles.vue"
-    import ArgChat from "./ArgChat.vue"
-    import ArgTeam from "./ArgTeam.vue"
 
     export default {
         head: {
             title: "ArgCloud"
             },
-        components: { ArgFiles, ArgChat, ArgTeam },
         data() {
             return {
-                view: null,
                 fullname: "",
                 username: ""
             }

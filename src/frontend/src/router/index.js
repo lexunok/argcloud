@@ -22,6 +22,26 @@ const routes = [
         path: '/profile',
         component: () => import( '@/components/ArgProfiles.vue'),
       },
+      {
+        path: '/news',
+        component: () => import( '@/components/ArgNews.vue'),
+      },
+      {
+        path: '/chat',
+        component: () => import( '@/components/ArgChat.vue'),
+      },
+      {
+        path: '/files',
+        component: () => import( '@/components/ArgFiles.vue'),
+      },
+      {
+        path: '/team',
+        component: () => import( '@/components/ArgTeam.vue'),
+      },
+      {
+        path: '/tools',
+        component: () => import( '@/components/ArgTools.vue'),
+      },
 ]
 
 const router = createRouter({
