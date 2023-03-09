@@ -15,4 +15,5 @@ public class ProfileService {
     public User getUser(String username){
         return userRepository.findByUsername(username).get();
     }
+    public void save(User user){userRepository.save(user);}
 }

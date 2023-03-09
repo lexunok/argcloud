@@ -1,13 +1,8 @@
 package ru.lexun.argcloud.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Collection;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -34,6 +29,9 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private String fullname;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    private List<User> friends;
 
     @Enumerated(EnumType.STRING)
     private Role role;

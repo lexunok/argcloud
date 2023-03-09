@@ -15,7 +15,6 @@ public class MessageService {
     public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
     }
-    @Transactional
     public void save(Message message){
         messageRepository.save(message);
     }

@@ -6,9 +6,10 @@
     </v-container>
     <v-list id="profile_friends_list">
       <v-list-item v-for="friend in friends"
-                   :key="friend.name"
+                   :key="friend.username"
                    :prepend-avatar="friend.avatar"
-                   :title="friend.name">
+                   :title="friend.fullname"
+                   :subtitle="friend.username">
       </v-list-item>
     </v-list>
     <v-dialog transition="dialog-top-transition"
@@ -42,9 +43,8 @@
             </v-row>
           </v-container>
           <v-container>
-            <v-list height="280">
-
-            </v-list>
+              {{ this.addFriend.fullname }} {{ this.addFriend.username }}
+              <v-btn @click="addUser">Добавить</v-btn>
           </v-container>
           <v-container>
             <v-row>
@@ -61,6 +61,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
   /**
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
@@ -70,28 +72,29 @@
 
       return {
         usersearch: null,
-        friends: [
-
-          {
-            avatar: 'https://lezgigazet.ru/wp-content/uploads/2020/11/nonimg.jpg',
-            name: 'Александр Черненко'
-          },
-          {
-            avatar: 'https://lezgigazet.ru/wp-content/uploads/2020/11/nonimg.jpg',
-            name: 'Овчинников Станислав'
-          },
-
-        ]
+        friends: [],
+        addFriend: null
       }
 
     },
+    async created(){
+      const response = await axios.get("/api/friends",{params:{username:localStorage.getItem("username")}})
+      this.friends = response.data
+    },
     methods: {
-      searchUser() {
+      async searchUser() {
+        if(this.usersearch!=localStorage.getItem("username")){
+        const response = await axios.get("/api/profile",{params:{username:this.usersearch}})
+        this.addFriend = response.data
+      }
         this.clearText()
       },
       clearText() {
         this.usersearch = ''
       },
+      async addUser(){
+        await axios.post("/api/friends",{user:localStorage.getItem("username"),friend:this.addFriend.username})
+      }
     }
   }
 </script>
