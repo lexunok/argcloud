@@ -80,14 +80,14 @@
 
         },
         created() {
-          axios.get("api/chat")
-            .then(response => this.messages = response.data)
+       //   axios.get("api/chat")
+        //    .then(response => this.messages = response.data)
         },
         methods: {
           sendMessage() {
-              axios.post("api/chat", { text: this.message })
-                .then(function (response) {
-                }.bind(this));
+             // axios.post("api/chat", { text: this.message })
+              //  .then(function (response) {
+               // }.bind(this));
             this.clearMessage()
           },
           clearMessage() {

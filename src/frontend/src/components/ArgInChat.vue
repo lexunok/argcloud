@@ -55,28 +55,27 @@
   </v-card>
 </template>
 <script>
-  import "axios"
   import axios from "axios";
     export default {
+      props:{chatId:Number},
         data() {
             return {
                 icon: null,
                 title: 'Заголовок',
                 message: null,
-              messages: null
+               messages: null,
+               id: this.chatId * localStorage.getItem("id")
             }
 
         },
-        created() {
-          axios.get("api/chat")
-            .then(response => this.messages = response.data)
+        async created() {
+          const response = await axios.get("api/chat",{params:{id:this.id}})
+          this.messages = response.data.messages
         },
         methods: {
-          sendMessage() {
-              axios.post("api/chat", { text: this.message })
-                .then(function (response) {
-                }.bind(this));
-            this.clearMessage()
+          async sendMessage() {
+              const response = await axios.post("api/chat", { text: this.message },{params:{id:this.id}})
+              this.clearMessage()
           },
           clearMessage() {
             this.message = ''

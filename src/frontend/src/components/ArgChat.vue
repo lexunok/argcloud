@@ -17,17 +17,17 @@
               <v-list lines="one">
                 <v-list-item link
                              v-for="chat in chatlist"
-                             :key="chat.title"
-                             :title="chat.title"
-                             :prepend-avatar="chat.icon"
-                             @click="openchat">
+                             :key="chat.id"
+                             :title="chat.fullname"
+                             :subtitle="chat.username"
+                             @click="openchat(chat.id)">
                 </v-list-item>
               </v-list>
             </v-card>
           </v-col>
           <v-col cols="8">
             <transition name="component-fade" mode="out-in" v-if="InChat">
-              <ArgInChat />
+              <ArgInChat :chatId="this.chatId" />
             </transition>
           </v-col>
         </v-row>
@@ -36,6 +36,7 @@
   </v-app>
 </template>
 <script>
+import axios from "axios"
     import ArgInChat from "./ArgInChat.vue"
     import ArgNavigation from "./ArgNavigation.vue"
     export default {
@@ -51,26 +52,22 @@
         data() {
             return {
                 InChat: false,
-                chatlist: [
-                    {
-                        title: 'Рабочий чат',
-                        icon: 'https://kartinkin.net/uploads/posts/2022-03/1647874291_22-kartinkin-net-p-rabochee-mesto-kartinki-24.jpg',
-                        id: 1
-                    },
-                    {
-                        title: 'Александр',
-                        icon: null,
-                        id: 2
-                    }
-                ]
+                chatlist: [],
+                chatId: 0
             }
         },
+        async created(){
+          const response = await axios.get("/api/friends",{params:{username:localStorage.getItem("username")}})
+          this.chatlist = response.data
+        },
         methods: {
-            openchat() {
+            openchat(chatId) {
                 if (this.InChat === false) {
+                    this.chatId = chatId
                     this.InChat = true
                 }
                 else {
+                    this.chatId = chatId
                     this.InChat = true
                 }
       
