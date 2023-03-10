@@ -10,6 +10,7 @@
                    :prepend-avatar="friend.avatar"
                    :title="friend.fullname"
                    :subtitle="friend.username">
+                   <v-btn @click="deleteUser(friend.username)">Удалить</v-btn>
       </v-list-item>
     </v-list>
     <v-dialog transition="dialog-top-transition"
@@ -94,6 +95,9 @@ import axios from 'axios'
       },
       async addUser(){
         await axios.post("/api/friends",{user:localStorage.getItem("username"),friend:this.addFriend.username})
+      },
+      async deleteUser(name){
+        await axios.delete("/api/friends",{data:{user:localStorage.getItem("username"),friend:name}})
       }
     }
   }

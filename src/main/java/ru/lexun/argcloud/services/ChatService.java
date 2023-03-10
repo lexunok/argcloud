@@ -20,4 +20,8 @@ public class ChatService {
     public Chat findChat(Long id){
         return chatRepository.findById(id).get();
     }
+    public void delete(Long id){
+        Chat chat = chatRepository.findById(id).get();
+        chatRepository.delete(chat);
+    }
 }

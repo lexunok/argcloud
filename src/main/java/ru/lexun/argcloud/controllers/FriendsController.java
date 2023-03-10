@@ -38,6 +38,17 @@ public class FriendsController {
         chatService.save(new Chat(user.getId(), friend.getId()));
 
     }
+    @DeleteMapping
+    public void deleteFriend(@RequestBody FriendDTO friendDTO){
+        User user = profileService.getUser(friendDTO.getUser());
+        User friend = profileService.getUser(friendDTO.getFriend());
+        user.getFriends().remove(friend);
+        friend.getFriends().remove(user);
+        profileService.save(user);
+        profileService.save(friend);
+        chatService.delete(friend.getId()*user.getId());
+
+    }
     @GetMapping
     public List<ProfileDTO> getFriends(@RequestParam(name = "username") String username){
         List<User> friends = profileService.getUser(username).getFriends();
