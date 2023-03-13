@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/argcloud
+    username: postgres
+    password: smiles200429
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+jwt_secret: SKAHWQ8HD8HCUIE98CHD9SHC8EH9W8H89FHSYQIJY8SACHIZXY89WYUY
