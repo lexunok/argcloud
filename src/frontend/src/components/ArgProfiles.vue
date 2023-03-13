@@ -62,14 +62,11 @@
     components: { ArgProfilesFriendList, ArgNavigation,  ArgProfilesInfo },
     data(){
       return{
-        fullname: "",
+        fullname: localStorage.getItem("fullname"),
         view: 'ArgProfilesInfo',
         lol: true
       }}
     ,
-    created(){
-      this.fullname = localStorage.getItem("fullname")
-    }
   }
 </script>
 <style>
