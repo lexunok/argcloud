@@ -8,7 +8,7 @@
         <v-card-title id="chattitle">
           <v-container>
             <v-row justify="center">
-              ЗАГОЛОВОК
+              Header
             </v-row>
           </v-container>
         </v-card-title>
@@ -23,9 +23,9 @@
         <v-row no-gutters justify="center">
           <v-card width="750" height="350" color="deep-purple-darken-2" :rounded="0" id="smslist">
             <v-list bg-color="deep-purple-darken-2">
-              <v-list-items v-for="text in messages">
-                <div id="chatmessage" class="rounded-xl rounded-bs-0"><p>{{text.text}}</p></div>
-              </v-list-items>
+              <v-list-item v-for="message in allMessages">
+                <div id="chatmessage" class="rounded-xl rounded-bs-0"><p>{{message.body}}</p></div>
+              </v-list-item>
             </v-list>
           </v-card>
         </v-row>
@@ -65,8 +65,7 @@
   </v-row>
 </template>
 <script>
-  import "axios"
-  import axios from "axios";
+  import { mapGetters, mapActions } from "vuex";
     export default {
         data() {
             return {
@@ -74,29 +73,24 @@
               scrollInvoked: 0,
                title: 'Заголовок',
                message: null,
-               messages: null
-
             }
-
         },
-        created() {
-       //   axios.get("api/chat")
-        //    .then(response => this.messages = response.data)
-        },
-        methods: {
-          sendMessage() {
-             // axios.post("api/chat", { text: this.message })
-              //  .then(function (response) {
-               // }.bind(this));
-            this.clearMessage()
-          },
-          clearMessage() {
-            this.message = ''
-          },
-          onScroll() {
-            this.scrollInvoked++
-          },
-        }
+        computed: mapGetters(['allMessages']),
+        async mounted(){ this.getMessages()},
+        methods: {...mapActions(['getMessages']),
+           sendMessage() {
+              // axios.post("api/chat", { text: this.message })
+               //  .then(function (response) {
+                // }.bind(this));
+             this.clearMessage()
+           },
+           clearMessage() {
+             this.message = ''
+           },
+           onScroll() {
+             this.scrollInvoked++
+           },
+          }
     }
 </script>
 <style>
