@@ -5,17 +5,17 @@
         <input type="text"
                placeholder="Поиск"
                class="focus:outline-none rounded-full w-full h-10 indent-2 "
-               v-model="searchFriend" />
+               v-model="search" />
       </div>
       <div class="mr-5 my-auto">
-        <button type="button" class="transition duration-150 ease-in-out rounded-full w-8 h-8  hover:bg-slate-300 active:bg-slate-400">
+        <button type="button" @click="searchFriend()" class="transition duration-150 ease-in-out rounded-full w-8 h-8  hover:bg-slate-300 active:bg-slate-400">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
           </svg>
         </button>
       </div>
     </div>
-    <div class="" v-if="searchFriend==''">
+    <div class="" v-if="search==''">
       <ul class="overflow-y-auto overflow-x-hidden h-[15rem]">
         <li v-for="friend in friends">
           <div class="flex flex-row h-auto mt-1 ml-2">
@@ -23,13 +23,13 @@
               <img class="rounded-full container w-10 h-10" src="../assets/nonimg.jpg" />
             </div>
             <div class="ml-4 my-auto w-full overflow-hidden">
-              <div>{{friend.name}}</div>
-              <div>@Ник</div>
+              <div>{{friend.fullname}}</div>
+              <div>@{{ friend.username }}</div>
             </div>
-            <div class="my-auto mr-2 mx-auto" v-if="deleteFriend==true">
+            <div class="my-auto mr-2 mx-auto" v-if="this.delete==true">
               <button type="button" class="transition duration-150 ease-in-out w-8 h-8 rounded-lg
             shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="deleteFriend(friend.username)">
                 <div class="">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#6D28D9" class="w-8 h-8">
                     <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
@@ -49,13 +49,13 @@
               <img class="rounded-full container w-10 h-10" src="../assets/nonimg.jpg" />
             </div>
             <div class="ml-4 my-auto w-full overflow-hidden">
-              <div>{{user.name}}</div>
-              <div>@Ник</div>
+              <div>{{user.fullname}}</div>
+              <div>@{{ user.username }}</div>
             </div>
             <div class="my-auto mr-2">
               <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
             shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="$emit('changeCard','ArgProfileButtons')">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="addFriend(user.username)"> <!--$emit('changeCard','ArgProfileButtons')-->
                 <div class="flex flex-row">
                   <div class="font-sans ml-2.5 text-sm text-violet-700 font-medium">ДОБАВИТЬ</div>
                   <div class="ml-5">
@@ -73,7 +73,7 @@
     <div class="mt-5">
       <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
             shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="deleteFriend=!deleteFriend">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="changeDelete">
         <div class="flex flex-row">
           <div class="ml-3">
           </div>
@@ -85,6 +85,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
   /**
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
@@ -92,49 +94,35 @@
   export default {
     data(){
       return {
-        searchFriend: '',
-        deleteFriend: false,
-        friends: [
-          {
-            name: 'Друк',
-          },
-          {
-            name: 'друк2',
-          },
-          {
-            name: 'мегадрук',
-          },
-          {
-            name: 'друк',
-          },
-          {
-            name: 'друк2',
-          },
-          {
-            name: 'мегадрук',
-          },
-          {
-            name: 'друк',
-          },
-          {
-            name: 'друк2',
-          },
-          {
-            name: 'мегадрук',
-          }
-        ],
-        unknownusers: [
-          {
-            name: 'недрук',
-          },
-          {
-            name: 'недрук2',
-          },
-          {
-            name: 'немегадрук',
-          },
-          
-        ],
+        search: '',
+        delete: false,
+        friends: null,
+        unknownusers: [],
+      }
+    },
+    async created(){
+      const response = await axios.get("/api/friends",{params:{username:localStorage.getItem("username")}})
+      this.friends = response.data
+    },
+    methods: {
+      async searchFriend() {
+        if(this.search!=localStorage.getItem("username")){
+        const response = await axios.get("/api/profile",{params:{username:this.search}})
+        this.unknownusers.unshift(response.data)
+      }
+        this.clearText()
+      },
+      changeDelete(){
+        this.delete = !this.delete
+      },
+      clearText() {
+        this.usersearch = ''
+      },
+      async addFriend(username){
+        await axios.post("/api/friends",{user:localStorage.getItem("username"),friend:username})
+      },
+      async deleteFriend(name){
+        await axios.delete("/api/friends",{data:{user:localStorage.getItem("username"),friend:name}})
       }
     } 
   }

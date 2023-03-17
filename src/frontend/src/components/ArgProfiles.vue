@@ -10,8 +10,8 @@
     </div>
     <div class=" w-1/2 container flex flex-row my-auto right-0">
       <div class="flex flex-col my-auto">
-        <div class="text-4xl font-bold text-white">Имя Фамилия</div>
-        <div class="text-3xl font-bold text-white">@Ник</div>
+        <div class="text-4xl font-bold text-white">{{ fullname }}</div>
+        <div class="text-3xl font-bold text-white">{{ username }}</div>
       </div>
       <div class="my-auto">
         <img class="rounded-full container ml-3 w-40 h-40" src="../assets/nonimg.jpg" />
@@ -72,6 +72,7 @@
     components: { ArgNavigation, ArgProfileFriend, ArgFriendList, ArgProfileButtons },
     data(){
       return{
+        username: '@' + localStorage.getItem("username"),
         fullname: localStorage.getItem("fullname"),
         view: 'ArgProfileButtons',
         logo: "./assets/logo.png",

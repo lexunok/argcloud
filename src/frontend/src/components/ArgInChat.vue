@@ -1,20 +1,20 @@
 <template>
   <div class="flex flex-col">
     <div class="mx-auto text-white font-medium">
-      НАЗВАНИЕ ЧАТА
+      Название чата
     </div>
     <div class="mx-auto text-white">
       Онлайн: null
     </div>
     <ul id="messageslist" class="overflow-y-auto overflow-x-hidden h-[26rem]">
-      <li v-for="text in messages" :key="text.messages" class="mt-2">
+      <li v-for="message in messages" :key="message.text" class="mt-2">
         <div class="w-auto h-auto flex flex-row ml-2">
           <div class="mt-1">
             <img class="rounded-full container ml-3 w-10 h-auto" src="../assets/nonimg.jpg" />
           </div>
           <div class="ml-3 container bg-white rounded-[30px] h-auto w-auto">
             <div class=" my-auto mx-auto ml-2 mr-2 p-3 break-all">
-              {{text.text}}
+              {{message.text}}
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
         icon: null,
         title: 'Заголовок',
         message: null,
-        messages: null,
+        messages: [],
         id: this.chatId * localStorage.getItem("id")
       }
 
@@ -71,6 +71,7 @@
     methods: {
       async sendMessage() {
         const response = await axios.post("api/chat", { text: this.message }, { params: { id: this.id } })
+        this.messages.unshift(response.data.text)
         this.clearMessage()
       },
       clearMessage() {

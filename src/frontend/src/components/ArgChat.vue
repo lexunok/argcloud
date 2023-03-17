@@ -17,14 +17,14 @@
         </div>
       </div>
       <ul class="overflow-y-auto h-[34rem] mt-3" id="chatslist">
-        <li v-for="chat in chatlist" :key="chat.name">
-          <button type="button" @click="openchat(chatId)" class="transition duration-150 ease-in-out w-56 h-14 ml-3 mt-2 bg-slate-50 hover:bg-slate-300 active:bg-slate-400">
+        <li v-for="chat in chatlist" :key="chat.id">
+          <button type="button" @click="openchat(chat.id)" class="transition duration-150 ease-in-out w-56 h-14 ml-3 mt-2 bg-slate-50 hover:bg-slate-300 active:bg-slate-400">
             <div class="flex flex-row">
               <div>
                 <img class="rounded-full container ml-3 my-auto w-10 h-10" src="../assets/nonimg.jpg" />
               </div>
               <div class="my-auto ml-3 overflow-hidden">
-                {{chat.name}}
+                {{chat.fullname}}
               </div>
             </div>
           </button>
@@ -34,7 +34,7 @@
   <div class="ml-4 w-[48rem] h-[40rem] bg-violet-700 rounded-xl">
     <div class="p-4">
       <transition name="component-fade" mode="out-in" v-if="InChat">
-        <ArgInChat />
+        <ArgInChat :chatId="this.chatId" />
       </transition>
     </div>
   </div>
@@ -66,14 +66,14 @@ import axios from "axios"
           this.chatlist = response.data
         },
     methods: {
-      frontopenchat() {
-        if (this.InChat === false) {
-          this.InChat = true
-        }
-        else {
-          this.InChat = true
-        }
-      },
+      // frontopenchat() {
+      //   if (this.InChat === false) {
+      //     this.InChat = true
+      //   }
+      //   else {
+      //     this.InChat = true
+      //   }
+      // },
             openchat(chatId) {
                 if (this.InChat === false) {
                     this.chatId = chatId

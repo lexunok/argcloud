@@ -6,8 +6,8 @@
           <img class="rounded-full container w-10 h-10" src="../assets/nonimg.jpg" />
         </div>
         <div class="ml-4 my-auto w-full overflow-hidden">
-          <div>{{friend.name}}</div>
-          <div>@Ник</div>
+          <div>{{friend.fullname}}</div>
+          <div>@{{ friend.username }}</div>
         </div>
       </div>
     </li>
@@ -25,35 +25,7 @@
 
       return {
         usersearch: null,
-        friends: [
-          {
-            name: 'друк',
-          },
-          {
-            name: 'друк2',
-          },
-          {
-            name: 'мегадрук',
-          },
-          {
-            name: 'друк',
-          },
-          {
-            name: 'друк2',
-          },
-          {
-            name: 'мегадрук',
-          },
-          {
-            name: 'друк',
-          },
-          {
-            name: 'друк2',
-          },
-          {
-            name: 'мегадрук',
-          }
-        ],
+        friends: null,
         addFriend: null
       }
 

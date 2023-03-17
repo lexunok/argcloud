@@ -5,8 +5,8 @@
         <button type="button" class="transition duration-150 ease-in-out
                 h-full w-full
             bg-violet-700 hover:bg-violet-800 active:bg-violet-900" @click="$router.push('/profile')">
-          <div class="ml-3">Имя Фамилия</div>
-          <div class="ml-3">@Ник</div>
+          <div class="ml-3">{{ fullname }}</div>
+          <div class="ml-3">{{ username }}</div>
         </button>
       </div>
       <div class="mt-6 h-14" id="nav-button-side">
