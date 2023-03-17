@@ -21,7 +21,7 @@ public class ChatContoller {
         return chatService.findChat(Long.parseLong(id));
     }
     @PostMapping
-    public void sendMessage(@RequestParam(name = "id") String id, @RequestBody Message message){
+    public void sendMessageToLocal(@RequestParam(name = "id") String id, @RequestBody Message message){
         Chat chat = chatService.findChat(Long.parseLong(id));
         chat.getMessages().add(message);
         chatService.save(chat);

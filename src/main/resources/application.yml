@@ -1,4 +1,8 @@
 spring:
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
   datasource:
     url: jdbc:postgresql://localhost:5432/argcloud
     username: postgres
