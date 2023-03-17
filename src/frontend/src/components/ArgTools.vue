@@ -1,20 +1,9 @@
 ﻿<template>
-  <v-app id="inspire">
-    <ArgNavigation />
-
-    <v-main>
-      <div>
-        <v-container>
-          <v-row justify="center">
-            <v-card color="red">
-              <v-card-title>В РАЗРАБОТКЕ</v-card-title>
-              <v-card-text>Тут должны быть инструменты, но как вы видете их нет. Они будут позже</v-card-text>
-            </v-card>
-          </v-row>
-        </v-container>
-      </div>
-    </v-main>
-  </v-app>
+  <ArgNavigation />
+  <div class="font-sans bg-red rounded shadow-md container mx-auto w-1/2">
+    <div class="p-3 text-xl font-semibold">В РАЗРАБОТКЕ</div>
+    <div class="p-3">Тут должны быть инструменты, но как вы видете их нет. Они будут позже</div>
+  </div>
 </template>
 <script>
   /**

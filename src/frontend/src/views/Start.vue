@@ -1,38 +1,26 @@
 ﻿<template>
-  <v-app>
-    <v-row>
-      <v-col>
-        <v-spacer></v-spacer>
-      </v-col>
-      <v-col>
-        <v-card color="white" id="down" width="500">
-          <v-card-title id="title">
-            <v-container>
-              <v-row justify="center">
-                Добро пожаловать!
-              </v-row>
-            </v-container>
-          </v-card-title>
-          <v-card-text id="text">
-          <v-container>
-                         <v-row justify="center">
-                           Это воркспейс ARGCloud. Вопрос. ТЫ КАК СЮДА ПОПАЛ???
-                         </v-row>
-            </v-container>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn id="buttons" to="/register">Регистрация</v-btn>
-            <v-btn id="buttons" to="/login">Войти</v-btn>
-            <v-spacer></v-spacer>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-      <v-col>
-        <v-spacer></v-spacer>
-      </v-col>
-    </v-row>
-  </v-app>
+  <div class="container mx-auto mt-24  flex flex-col bg-violet-700 rounded-xl h-32 w-1/3">
+    <div class="mx-auto text-white mt-4 basis-1/4">Добро пожаловать</div>
+    <div class="mx-auto text-white basis-1/2">Это воркспейс ARGCloud. Вопрос. ТЫ КАК СЮДА ПОПАЛ???</div>
+    <div class="flex flex-row basis-1/2">
+      <div class="basis-1/2"></div>
+      <div class="mr-2">
+        <button type="button" class="transition duration-150 ease-in-out w-auto h-8 rounded
+            shadow-md hover:shadow-lg
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="$router.push('/register')">
+          <div class="font-sans p-1 text-sm text-violet-700 font-medium">Регистрация</div>
+        </button>
+      </div>
+      <div class="ml-2">
+        <button type="button" class="transition duration-150 ease-in-out w-auto h-8 rounded
+            shadow-md hover:shadow-lg
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="$router.push('/login')">
+          <div class="font-sans p-1 text-sm text-violet-700 font-medium">Войти</div>
+        </button>
+      </div>
+      <div class="basis-1/2"></div>
+    </div>
+  </div>
 </template>
 <script>
   /**
@@ -43,17 +31,10 @@ export default{
 }
 </script>
 <style>
-  #title {
-    background-color: #9C27B0;
-    color: white;
+  ::-webkit-scrollbar {
+    width: 0;
   }
-  #buttons {
-    background-color: #4DD0E1;
-    color: white;
-  }
-  #down {
-    top: 50px;
-    border: solid;
-    border-color: #9C27B0;
+  body {
+    background: linear-gradient(90deg, rgb(99 102 241), rgb(139 92 246));
   }
 </style>
