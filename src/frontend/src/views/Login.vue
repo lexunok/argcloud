@@ -63,7 +63,7 @@
         localStorage.setItem("fullname", user.data.fullname)
         localStorage.setItem("email", user.data.email)
         localStorage.setItem("id",user.data.id)
-        this.$router.push("/home")
+        this.$router.push("/profile")
       }
 
     }
