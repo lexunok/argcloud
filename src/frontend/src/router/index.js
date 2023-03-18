@@ -25,32 +25,32 @@ const routes = [
       {
         path: '/profile',
         name: 'Профиль',
-        component: () => import( '@/components/ArgProfiles.vue'),
+        component: () => import( '@/views/Profiles.vue'),
       },
       {
         path: '/news',
         name: 'Новости',
-        component: () => import( '@/components/ArgNews.vue'),
+        component: () => import( '@/views/News.vue'),
       },
       {
         path: '/chat',
         name: 'Чат',
-        component: () => import( '@/components/ArgChat.vue'),
+        component: () => import( '@/views/Chat.vue'),
       },
       {
         path: '/files',
         name: 'Мои файлы',
-        component: () => import( '@/components/ArgFiles.vue'),
+        component: () => import( '@/views/Files.vue'),
       },
       {
         path: '/team',
         name: 'Команда',
-        component: () => import( '@/components/ArgTeam.vue'),
+        component: () => import( '@/views/Team.vue'),
       },
       {
         path: '/tools',
         name: 'Инструменты',
-        component: () => import( '@/components/ArgTools.vue'),
+        component: () => import( '@/views/Tools.vue'),
       },
 ]
 

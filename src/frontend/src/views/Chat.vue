@@ -1,5 +1,5 @@
 <template>
-  <ArgNavigation />
+  <Navigation />
   <div class="flex flex-row mt-10">
     <div class="ml-72  w-64 h-[40rem] bg-violet-700 flex flex-col">
       <div class="bg-white ml-2 w-60 rounded-full flex flex-row mt-5 ">
@@ -34,7 +34,7 @@
   <div class="ml-4 w-[48rem] h-[40rem] bg-violet-700 rounded-xl">
     <div class="p-4">
       <transition name="component-fade" mode="out-in" v-if="InChat">
-        <ArgInChat :chatId="this.chatId" />
+        <InChat :chatId="this.chatId" />
       </transition>
     </div>
   </div>
@@ -42,8 +42,8 @@
 </template>
 <script>
 import axios from "axios"
-    import ArgInChat from "./ArgInChat.vue"
-  import ArgNavigation from "./ArgNavigation.vue"
+  import InChat from "../components/InChat.vue"
+  import Navigation from "../components/Navigation.vue"
     export default {
 
         props: {
@@ -53,7 +53,7 @@ import axios from "axios"
         head: {
             title: "Чат"
                 },
-    components: { ArgInChat, ArgNavigation },
+    components: { InChat, Navigation },
         data() {
             return {
                 InChat: false,
