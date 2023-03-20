@@ -1,25 +1,25 @@
 ﻿<template>
   <Navigation />
   <div class="bg-violet-700 w-full h-48 flex flex-row">
-    <div class="ml-20 w-1/2 my-auto ">
+    <div class="ml-28 w-3/4 container flex flex-row my-auto mr-32">
+      <div class="my-auto ml-2">
+        <img class="rounded-full container ml-3 w-40 h-40" src="../assets/nonimg.jpg" />
+      </div>
+      <div class="flex flex-col my-auto ml-3">
+        <div class="text-4xl font-bold text-white break-words w-[35rem]">{{ getFullname }}</div>
+        <div class="text-4xl font-bold text-white break-words w-[35rem]">@{{ getUsername }}</div>
+      </div>
+      <div class="my-auto ml-10">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#38BDF8" class="w-16 h-16">
+          <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
+        </svg>
+      </div>
+    </div>
+    <div class="w-1/3 my-auto ">
       <div class="w-20 h-20 bg-white rounded-xl ml-32 mb-4" v-if="logo==null">
         <div class="font-bold mx-auto mt-7">LOGO</div>
       </div>
       <div class="w-20 h-20 rounded-xl ml-32 mb-4 bg-center bg-cover bg-[url('./assets/logo.png')]" v-if="logo!=null">
-      </div>
-    </div>
-    <div class=" w-1/2 container flex flex-row my-auto right-0">
-      <div class="flex flex-col my-auto">
-        <div class="text-4xl font-bold text-white">{{ getFullname }}</div>
-        <div class="text-3xl font-bold text-white">@{{ getUsername }}</div>
-      </div>
-      <div class="my-auto">
-        <img class="rounded-full container ml-3 w-40 h-40" src="../assets/nonimg.jpg" />
-      </div>
-      <div class="my-auto ml-5">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#38BDF8" class="w-16 h-16">
-          <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
-        </svg>
       </div>
     </div>
   </div>

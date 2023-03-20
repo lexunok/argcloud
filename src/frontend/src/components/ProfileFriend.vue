@@ -93,9 +93,9 @@ import { mapGetters,mapActions } from 'vuex'
       ...mapActions(['addFriend','deleteFriend']),
       async searchFriend() {
         if(this.search!=this.getUsername){
-        const response = await axios.get("/api/profile",{params:{username:this.search}})
-          this.unknownuser = response.data
-          if (this.unknownuser != null) {
+        const response = await axios.get("/api/profile", { params: { username: this.search } })
+          if (response.data != null) {
+            this.unknownuser = response.data
             this.searchuser = true
           }
       }
