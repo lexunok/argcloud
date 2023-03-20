@@ -52,18 +52,14 @@
     },
     methods: {
         async sendForm() {
-        const data={
-            username: this.username,
-            password: this.password
-        }
-        const response = await axios.post("api/auth/login", data)
-        localStorage.setItem("token",response.data.token)
-        const user = await axios.get("/api/profile",{params:{username:data.username}})
-        localStorage.setItem("username", user.data.username)
-        localStorage.setItem("fullname", user.data.fullname)
-        localStorage.setItem("email", user.data.email)
-        localStorage.setItem("id",user.data.id)
-        this.$router.push("/profile")
+          const response = await axios.post("api/auth/login", {
+              username: this.username,
+              password: this.password
+          })
+          localStorage.setItem("token",response.data.token)
+          this.$store.dispatch('setUser',this.username)
+          this.$store.dispatch('setFriends',this.username)
+          this.$router.push("/profile")
       }
 
     }

@@ -2,9 +2,9 @@ import axios from "axios"
 
 export default {
     actions:{
-        async getMessages(ctx){
+        async getMessages({commit}){
             const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
-            ctx.commit('updateMessages', response.data )
+            commit('updateMessages', response.data )
         }
     },
     mutations:{

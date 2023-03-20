@@ -1,13 +1,13 @@
 <template>
   <div class="flex flex-col">
     <div class="mx-auto text-white font-medium">
-      Название чата
+      {{this.getChatName}}
     </div>
     <div class="mx-auto text-white">
       Онлайн: null
     </div>
     <ul id="messageslist" class="overflow-y-auto overflow-x-hidden h-[26rem]">
-      <li v-for="message in messages" :key="message.text" class="mt-2">
+      <li v-for="message in getMessages" :key="message.id" class="mt-2">
         <div class="w-auto h-auto flex flex-row ml-2">
           <div class="mt-1">
             <img class="rounded-full container ml-3 w-10 h-auto" src="../assets/nonimg.jpg" />
@@ -33,7 +33,7 @@
                v-model="message"
                placeholder="Введите сообщение..."
                class="focus:outline-none rounded-[30px] h-10 indent-2 placeholder:italic w-full"
-               @keyup.enter="sendMessage()" />
+               @keyup.enter="sendMessageTo()" />
       </div>
       <div class="mr-2 my-auto">
         <button type="button" class="transition duration-150 ease-in-out p-2 rounded-full hover:bg-slate-300 active:bg-slate-400" @click="sendMessage()">
@@ -51,30 +51,18 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
-  import axios from "axios";
+  import { mapGetters, mapActions } from 'vuex'
   export default {
-    props: { chatId: Number },
     data() {
       return {
-        icon: null,
-        title: 'Заголовок',
         message: null,
-        messages: [],
-        id: this.chatId * localStorage.getItem("id")
       }
-
     },
-    async created() {
-      const response = await axios.get("api/chat", { params: { id: this.id } })
-      this.messages = response.data.messages
-    },
+    computed: {...mapGetters(['getMessages','getChatName'])},
     methods: {
-      async sendMessage() {
-        const response = await axios.post("api/chat", { text: this.message }, { params: { id: this.id } })
-        this.messages.unshift(response.data.text)
-        this.clearMessage()
-      },
-      clearMessage() {
+      ...mapActions(['sendMessage']),
+      async sendMessageTo() {
+        this.sendMessage(this.message)
         this.message = ''
       },
     }

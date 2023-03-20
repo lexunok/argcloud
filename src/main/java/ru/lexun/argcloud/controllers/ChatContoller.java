@@ -17,14 +17,15 @@ public class ChatContoller {
         this.chatService = chatService;
     }
     @GetMapping
-    public Chat findChats(@RequestParam(name = "id") String id){
-        return chatService.findChat(Long.parseLong(id));
+    public List<Message> findChat(@RequestParam(name = "id") Long id){
+        return chatService.findChat(id).getMessages();
     }
     @PostMapping
-    public void sendMessageToLocal(@RequestParam(name = "id") String id, @RequestBody Message message){
-        Chat chat = chatService.findChat(Long.parseLong(id));
+    public Message sendMessageToLocal(@RequestParam(name = "id") Long id, @RequestBody Message message){
+        Chat chat = chatService.findChat(id);
         chat.getMessages().add(message);
         chatService.save(chat);
+        return message;
     }
 
 }

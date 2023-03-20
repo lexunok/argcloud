@@ -5,8 +5,8 @@
         <button type="button" class="transition duration-150 ease-in-out
                 h-full w-full
             bg-violet-700 hover:bg-violet-800 active:bg-violet-900" @click="$router.push('/profile')">
-          <div class="ml-3">{{ fullname }}</div>
-          <div class="ml-3">{{ username }}</div>
+          <div class="ml-3">{{ getFullname}}</div>
+          <div class="ml-3">@{{ getUsername }}</div>
         </button>
       </div>
       <div class="mt-6 h-14" id="nav-button-side">
@@ -118,16 +118,10 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
+ import { mapGetters } from 'vuex';
   export default {
-    data() {
-      return {
-        fullname: "",
-        username: ""
-      }
-    },
-    created() {
-      this.fullname = localStorage.getItem("fullname")
-      this.username = "@" + localStorage.getItem("username")
+    computed: {
+      ...mapGetters(['getUsername','getFullname'])
     }
   }
 </script>

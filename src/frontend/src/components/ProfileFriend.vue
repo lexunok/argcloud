@@ -6,6 +6,7 @@
                placeholder="Поиск"
                class="focus:outline-none rounded-full w-full h-10 indent-2 "
                v-model="search"
+               @input="searchFriend()"
                @keyup.enter="searchFriend()"/>
       </div>
       <div class="mr-5 my-auto">
@@ -18,7 +19,7 @@
     </div>
     <div class="" v-if="search==''">
       <ul class="overflow-y-auto overflow-x-hidden h-[15rem]">
-        <li v-for="friend in friends">
+        <li v-for="friend in getFriends">
           <div class="flex flex-row h-auto mt-1 ml-2">
             <div class="my-auto">
               <img class="rounded-full container w-10 h-10" src="../assets/nonimg.jpg" />
@@ -27,10 +28,10 @@
               <div>{{friend.fullname}}</div>
               <div>@{{ friend.username }}</div>
             </div>
-            <div class="my-auto mr-2 mx-auto" v-if="this.delete==true">
+            <div class="my-auto mr-2 mx-auto">
               <button type="button" class="transition duration-150 ease-in-out w-8 h-8 rounded-lg
             shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="deleteFriend(friend.username)">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="deleteFriend({username: getUsername,friendname:friend.username})">
                 <div class="">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#6D28D9" class="w-8 h-8">
                     <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
@@ -55,7 +56,7 @@
           <div class="my-auto mr-2">
             <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
             shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="addFriend(unknownuser.username)">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="addFriend({username: getUsername,friendname:unknownuser.username})">
               <div class="flex flex-row">
                 <div class="font-sans ml-2.5 text-sm text-violet-700 font-medium">ДОБАВИТЬ</div>
                 <div class="ml-5">
@@ -69,23 +70,12 @@
         </div>
       </div>
     </div>
-    <div class="mt-5" v-if="search==''">
-      <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
-            shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="changeDelete">
-        <div class="flex flex-row">
-          <div class="ml-3">
-          </div>
-          <div class="font-sans ml-2.5 text-sm text-violet-700 font-medium">УДАЛИТЬ</div>
-        </div>
-      </button>
-    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-
+import { mapGetters,mapActions } from 'vuex'
   /**
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
@@ -95,38 +85,24 @@ import axios from 'axios'
       return {
         search: '',
         searchuser: false,
-        delete: false,
-        friends: null,
         unknownuser: null,
       }
     },
-    async created(){
-      const response = await axios.get("/api/friends",{params:{username:localStorage.getItem("username")}})
-      this.friends = response.data
-    },
+    computed: {...mapGetters(['getFriends','getUsername'])},
     methods: {
+      ...mapActions(['addFriend','deleteFriend']),
       async searchFriend() {
-        if(this.search!=localStorage.getItem("username")){
+        if(this.search!=this.getUsername){
         const response = await axios.get("/api/profile",{params:{username:this.search}})
           this.unknownuser = response.data
           if (this.unknownuser != null) {
             this.searchuser = true
           }
       }
-        this.clearText()
       },
       changeDelete(){
         this.delete = !this.delete
       },
-      clearText() {
-        this.usersearch = ''
-      },
-      async addFriend(username){
-        await axios.post("/api/friends",{user:localStorage.getItem("username"),friend:username})
-      },
-      async deleteFriend(name){
-        await axios.delete("/api/friends",{data:{user:localStorage.getItem("username"),friend:name}})
-      }
     } 
   }
 </script>

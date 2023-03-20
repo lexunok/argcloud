@@ -85,7 +85,6 @@ import axios from 'axios'
         this.password = "",
         this.email = "",
         this.fullname = ""
-
       }
 
     }

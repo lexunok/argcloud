@@ -17,14 +17,14 @@
         </div>
       </div>
       <ul class="overflow-y-auto h-[34rem] mt-3" id="chatslist">
-        <li v-for="chat in chatlist" :key="chat.id">
-          <button type="button" @click="openchat(chat.id)" class="transition duration-150 ease-in-out w-56 h-14 ml-3 mt-2 bg-slate-50 hover:bg-slate-300 active:bg-slate-400">
+        <li v-for="friend in getFriends" :key="friend.id">
+          <button type="button" @click="openchat(friend.id, friend.fullname)" class="transition duration-150 ease-in-out w-56 h-14 ml-3 mt-2 bg-slate-50 hover:bg-slate-300 active:bg-slate-400">
             <div class="flex flex-row">
               <div>
                 <img class="rounded-full container ml-3 my-auto w-10 h-10" src="../assets/nonimg.jpg" />
               </div>
               <div class="my-auto ml-3 overflow-hidden">
-                {{chat.fullname}}
+                {{friend.fullname}}
               </div>
             </div>
           </button>
@@ -34,59 +34,36 @@
   <div class="ml-4 w-[48rem] h-[40rem] bg-violet-700 rounded-xl">
     <div class="p-4">
       <transition name="component-fade" mode="out-in" v-if="InChat">
-        <InChat :chatId="this.chatId" />
+        <InChat/>
       </transition>
     </div>
   </div>
   </div>
 </template>
 <script>
-import axios from "axios"
+  import { mapGetters, mapActions } from "vuex"
   import InChat from "../components/InChat.vue"
   import Navigation from "../components/Navigation.vue"
     export default {
-
-        props: {
-            title: String,
-            icon: String
-        },
-        head: {
-            title: "Чат"
-                },
+    computed: {...mapGetters(['getFriends','getId'])},
     components: { InChat, Navigation },
-        data() {
-            return {
-                InChat: false,
-              chatlist: [],
-                chatId: 0
-            }
-        },
-        async created(){
-          const response = await axios.get("/api/friends",{params:{username:localStorage.getItem("username")}})
-          this.chatlist = response.data
+    data() {
+      return {
+          InChat: false,
+          }
         },
     methods: {
-      // frontopenchat() {
-      //   if (this.InChat === false) {
-      //     this.InChat = true
-      //   }
-      //   else {
-      //     this.InChat = true
-      //   }
-      // },
-            openchat(chatId) {
-                if (this.InChat === false) {
-                    this.chatId = chatId
-                    this.InChat = true
-                }
-                else {
-                    this.chatId = chatId
-                    this.InChat = true
-                }
-      
-            }
+      ...mapActions(['setMessages','setChatId']),
+      async openchat(id, name) {
+        const chatId = this.getId * id
+        this.setMessages(chatId)
+        this.$store.commit('updateChatName',name)
+        if(this.InChat===false){
+          this.InChat = !this.InChat
         }
+      }
     }
+  }
 </script>
 <style>
   ::-webkit-scrollbar {

@@ -28,7 +28,7 @@ public class FriendsController {
     }
 
     @PostMapping
-    public void addFriend(@RequestBody FriendDTO friendDTO){
+    public ProfileDTO addFriend(@RequestBody FriendDTO friendDTO){
         User user = profileService.getUser(friendDTO.getUser());
         User friend = profileService.getUser(friendDTO.getFriend());
         user.getFriends().add(friend);
@@ -36,17 +36,19 @@ public class FriendsController {
         profileService.save(user);
         profileService.save(friend);
         chatService.save(new Chat(user.getId(), friend.getId()));
+        return mapper.toProfileDTO(friend);
 
     }
     @DeleteMapping
-    public void deleteFriend(@RequestBody FriendDTO friendDTO){
+    public ProfileDTO deleteFriend(@RequestBody FriendDTO friendDTO){
         User user = profileService.getUser(friendDTO.getUser());
         User friend = profileService.getUser(friendDTO.getFriend());
+        ProfileDTO friendProfile = mapper.toProfileDTO(friend);
         user.getFriends().remove(friend);
         friend.getFriends().remove(user);
         profileService.save(user);
         profileService.save(friend);
-        chatService.delete(friend.getId()*user.getId());
+        return friendProfile;
 
     }
     @GetMapping
