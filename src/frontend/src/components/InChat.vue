@@ -12,7 +12,8 @@
           <div class="mt-1">
             <img class="rounded-full container ml-3 w-10 h-auto" src="../assets/nonimg.jpg" />
           </div>
-          <div class="ml-3 container bg-white rounded-[30px] h-auto w-auto">
+          <div class="ml-3 container bg-white rounded-[30px] h-auto w-auto flex flex-col">
+            <div>{{ message.sender }}</div>
             <div class=" my-auto mx-auto ml-2 mr-2 p-3 break-all">
               {{message.text}}
             </div>
@@ -58,11 +59,11 @@
         message: null,
       }
     },
-    computed: {...mapGetters(['getMessages','getChatName'])},
+    computed: {...mapGetters(['getMessages','getChatName','getFullname'])},
     methods: {
       ...mapActions(['sendMessage']),
       async sendMessageTo() {
-        this.sendMessage(this.message)
+        this.sendMessage({text:this.message,sender:this.getFullname})
         this.message = ''
       },
     }

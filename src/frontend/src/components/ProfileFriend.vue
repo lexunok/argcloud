@@ -43,9 +43,9 @@
         </li>
       </ul>
     </div>
-    <div class="" v-if="search!=''">
+    <div class="" v-if="this.searchuser">
       <div class="overflow-y-auto overflow-x-hidden h-[15rem]">
-        <div class="flex flex-row h-auto mt-1 ml-2" v-if="searchuser==true">
+        <div class="flex flex-row h-auto mt-1 ml-2" >
           <div class="my-auto ">
             <img class="rounded-full container w-10 h-10" src="../assets/nonimg.jpg" />
           </div>
@@ -56,7 +56,7 @@
           <div class="my-auto mr-2">
             <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
             shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="addFriend({username: getUsername,friendname:unknownuser.username})">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="addFriend({username: getUsername,friendname:unknownuser.username}) ">
               <div class="flex flex-row">
                 <div class="font-sans ml-2.5 text-sm text-violet-700 font-medium">ДОБАВИТЬ</div>
                 <div class="ml-5">
@@ -84,7 +84,7 @@ import { mapGetters,mapActions } from 'vuex'
     data(){
       return {
         search: '',
-        searchuser: false,
+        searchuser:  false,
         unknownuser: null,
       }
     },
@@ -92,19 +92,22 @@ import { mapGetters,mapActions } from 'vuex'
     methods: {
       ...mapActions(['addFriend','deleteFriend']),
       async searchFriend() {
-        if(this.search!=this.getUsername){
-        const response = await axios.get("/api/profile", { params: { username: this.search } })
-          if (response.data != null) {
-            this.unknownuser = response.data
-            this.searchuser = true
-          }
-      }
+        try{const response = await axios.get("/api/profile", { params: { username: this.search } })
+            if(this.search!=''&& this.search!=this.getUsername && this.getFriends.find((i) => i.username === this.search) == undefined){
+              this.unknownuser = response.data
+              this.searchuser = true
+            }
+        }catch (e){
+          this.searchuser = false
+          this.unknownuser = null
+        }
+        }
       },
       changeDelete(){
         this.delete = !this.delete
       },
     } 
-  }
+  
 </script>
 <style>
 </style>

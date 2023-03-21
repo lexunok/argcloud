@@ -8,9 +8,9 @@ export default {
             const response = await axios.get("/api/chat",{params:{id}})
             commit('updateMessages', response.data )
         },
-        async sendMessage({commit, state}, text ){
+        async sendMessage({commit, state}, {text,sender} ){
             const id = state.chatId
-            const response = await axios.post("api/chat", { text }, { params: { id } })
+            const response = await axios.post("api/chat", { text, sender }, { params: { id } })
             commit('addMessageToState', response.data )
         },
     },

@@ -25,9 +25,13 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String username;
+    @Column(unique = true)
     private String email;
+    @Column
     private String password;
+    @Column
     private String fullname;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)

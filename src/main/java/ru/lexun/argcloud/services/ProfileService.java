@@ -1,9 +1,14 @@
 package ru.lexun.argcloud.services;
 
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.lexun.argcloud.models.User;
 import ru.lexun.argcloud.repositories.UserRepository;
+
+import java.util.NoSuchElementException;
 
 @Service
 public class ProfileService {
