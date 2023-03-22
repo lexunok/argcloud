@@ -12,10 +12,12 @@
           <div class="mt-1">
             <img class="rounded-full container ml-3 w-10 h-auto" src="../assets/nonimg.jpg" />
           </div>
-          <div class="ml-3 container bg-white rounded-[30px] h-auto w-auto flex flex-col">
-            <div>{{ message.sender }}</div>
-            <div class=" my-auto mx-auto ml-2 mr-2 p-3 break-all">
-              {{message.text}}
+          <div class="flex flex-col h-auto">
+            <div class="h-auto text-white ml-3">{{ message.sender }}</div>
+            <div class="ml-3 container bg-white rounded-[30px] h-auto w-auto">
+              <div class=" my-auto mx-auto ml-2 mr-2 p-3 break-all">
+                {{message.text}}
+              </div>
             </div>
           </div>
         </div>
@@ -30,14 +32,15 @@
         </button>
       </div>
       <div class="w-full my-auto">
-        <input type="text"
+        <textarea type="text"
                v-model="message"
                placeholder="Введите сообщение..."
-               class="focus:outline-none rounded-[30px] h-10 indent-2 placeholder:italic w-full"
-               @keyup.enter="sendMessageTo()" />
+               class="focus:outline-none h-10 indent-2 placeholder:italic w-full resize-none"
+               @keyup.enter="sendMessageTo()">
+        </textarea>
       </div>
       <div class="mr-2 my-auto">
-        <button type="button" class="transition duration-150 ease-in-out p-2 rounded-full hover:bg-slate-300 active:bg-slate-400" @click="sendMessage()">
+        <button type="button" class="transition duration-150 ease-in-out p-2 rounded-full hover:bg-slate-300 active:bg-slate-400" @click="sendMessageTo()">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
           </svg>

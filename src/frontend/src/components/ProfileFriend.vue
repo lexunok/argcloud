@@ -4,7 +4,7 @@
       <div class="bg-violet-500 rounded-full w-full my-auto">
         <input type="text"
                placeholder="Поиск"
-               class="focus:outline-none rounded-full w-full h-10 indent-2 "
+               class="focus:outline-none rounded-full w-full h-10 indent-2 text-white"
                v-model="search"
                @input="searchFriend()"
                @keyup.enter="searchFriend()"/>
