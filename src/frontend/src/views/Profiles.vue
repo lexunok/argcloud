@@ -6,8 +6,8 @@
         <img class="rounded-full container ml-3 w-40 h-40" src="../assets/nonimg.jpg" />
       </div>
       <div class="flex flex-col my-auto ml-3">
-        <div class="text-4xl font-bold text-white break-words w-[35rem]">{{ getFullname }}</div>
-        <div class="text-4xl font-bold text-white break-words w-[35rem]">@{{ getUsername }}</div>
+        <div class="text-4xl font-bold text-white break-words min-w-0 max-w-[35rem]">{{ getFullname }}</div>
+        <div class="text-4xl font-bold text-white break-words min-w-0 max-w-[35rem]">@{{ getUsername }}</div>
       </div>
       <div class="my-auto ml-10">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#38BDF8" class="w-16 h-16">
