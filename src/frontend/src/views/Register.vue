@@ -147,7 +147,6 @@ import axios from 'axios'
       },
       clickBtn() {
         this.isFlag = !this.isFlag
-        console.log(this.isFlag)
       },
 
     }

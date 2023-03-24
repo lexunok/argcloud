@@ -1,8 +1,8 @@
 <template>
-  <Navigation /> <!-- навигация лол -->
-  <div class="mt-10 conatiner ml-36 w-[80rem] h-[40rem] bg-violet-700 rounded-[30px] flex"> <!-- само окно -->
-    <div class="p-1 w-[78rem] h-[38rem] mx-auto my-auto flex flex-row"> <!-- область внутри окна -->
-      <div class="w-[24rem] flex flex-col"> <!-- список папок . хз зачем тут flex-col но пусть будет-->
+  <Navigation /> 
+  <div class="mt-10 conatiner ml-36 w-[80rem] h-[40rem] bg-violet-700 rounded-[30px] flex"> 
+    <div class="p-1 w-[78rem] h-[38rem] mx-auto my-auto flex flex-row"> 
+      <div class="w-[24rem] flex flex-col"> 
         <div class="p-5">
           <ul class="overflow-y-auto h-[34rem]">
             <li v-for="folder in folders">
@@ -22,7 +22,7 @@
           </ul>
         </div>
       </div>
-      <div class="w-[73rem]  bg-violet-900 rounded-[30px]"> <!-- окно с файлами . лес го ин FileFolder.vue -->
+      <div class="w-[73rem]  bg-violet-900 rounded-[30px]"> 
         <transition name="component-fade" mode="out-in" v-if="InFolder">
           <FileFolder />
         </transition>
@@ -43,12 +43,6 @@
           {
             name: 'Мои файлы'
           },
-          {
-            name: 'Проект1'
-          },
-          {
-            name: 'Проект2'
-          }
         ],
       }
     },
