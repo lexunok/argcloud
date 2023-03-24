@@ -1,15 +1,15 @@
 ﻿<template>
   <div class="p-2 flex flex-row">
-    <div class="text-white my-auto ml-3 w-[38rem]">
+    <div class="text-white my-auto ml-3 w-[38rem]"> <!-- точно не название папки -->
       {НАЗВАНИЕ ПАПКИ}
     </div>
-    <div>
+    <div> <!-- баттон (кнопка) для смены отображения списка -->
       <button type="button" @click="changeView" class="transition duration-150 ease-in-out w-auto h-14 ml-3 mt-2 bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600 rounded-[10px]">
         <div class="flex flex-row mx-auto p-2">
           <div class="text-violet-700">
             Сменить вид
           </div>
-          <div class="ml-1">
+          <div class="ml-1"> <!-- икокни которе меняются при смене вида -->
             <div v-if="viewCard">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#6d28d9" class="w-6 h-6">
                 <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h2.25a3 3 0 013 3v2.25a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm9.75 0a3 3 0 013-3H18a3 3 0 013 3v2.25a3 3 0 01-3 3h-2.25a3 3 0 01-3-3V6zM3 15.75a3 3 0 013-3h2.25a3 3 0 013 3V18a3 3 0 01-3 3H6a3 3 0 01-3-3v-2.25zm9.75 0a3 3 0 013-3H18a3 3 0 013 3V18a3 3 0 01-3 3h-2.25a3 3 0 01-3-3v-2.25z" clip-rule="evenodd" />
@@ -29,7 +29,7 @@
         </div>
       </button>
     </div>
-    <div>
+    <div> <!-- баттон (кнопка) для смены загрузки -->
       <button type="button" @click="changeToLoad" class="transition duration-150 ease-in-out w-auto h-14 ml-3 mt-2 bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600 rounded-[10px]">
         <div class="flex flex-row mx-auto p-2">
           <div class="text-violet-700">
@@ -44,14 +44,14 @@
       </button>
     </div>
   </div>
-  <div class="ml-8 p-3">
-    <transition name="component-fade" mode="out-in" v-if="viewCard">
+  <div class="ml-8 p-3"> <!-- вот они, слева направо... -->
+    <transition name="component-fade" mode="out-in" v-if="viewCard"> <!-- ... список ввиде карточек,... -->
       <FileViewCard />
     </transition>
-    <transition name="component-fade" mode="out-in" v-if="viewList">
+    <transition name="component-fade" mode="out-in" v-if="viewList"> <!-- ... список ввиде списка... --> 
       <FileViewList />
     </transition>
-    <transition name="component-fade" mode="out-in" v-if="viewLoader">
+    <transition name="component-fade" mode="out-in" v-if="viewLoader"> <!-- ... и окно загрузки -->
       <FileViewLoader />
     </transition>
   </div>
@@ -68,38 +68,38 @@
     components: { FileViewCard, FileViewList, FileViewLoader },
     data() {
       return {
-        viewCard: true,
-        viewList: false,
-        lastView: 'Card',
-        viewLoader: false
+        viewCard: true, //бул для отображения карточками
+        viewList: false, // списком
+        lastView: 'Card', // сохранение последнего вида списка
+        viewLoader: false // был для загрузки
       }
     },
     methods: {
-      changeView() {
-        if (this.viewCard == false && this.viewList == false) {
-          if (this.lastView == 'Card') {
+      changeView() { // смена вида
+        if (this.viewCard == false && this.viewList == false) { // если открыт загрузчик
+          if (this.lastView == 'Card') { // если последний раз были карточки
             this.viewLoader = false
             this.viewCard = true
           }
-          else if (this.lastView == 'List') {
+          else if (this.lastView == 'List') { // если список
             this.viewLoader = false
             this.viewList = true
           }
         }
-        else {
-          if (this.viewCard == true) {
+        else { // иначе
+          if (this.viewCard == true) {  // если открыты карточки
             this.viewCard = false
             this.viewList = true
             this.lastView = 'List'
           }
-          else if (this.viewList == true) {
+          else if (this.viewList == true) { // если список
             this.viewList = false
             this.viewCard = true
             this.lastView = 'Card'
           }
         }
       },
-      changeToLoad() {
+      changeToLoad() { // изменение на загрузчик
         this.viewCard = false
         this.viewList = false
         this.viewLoader = true
