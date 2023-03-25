@@ -19,8 +19,8 @@
       <div class="mt-6 h-14" id="nav-button-side">
         <button type="button" class="transition duration-150 ease-in-out
                 h-full w-full
-            bg-violet-700 hover:bg-violet-800 active:bg-violet-900" @click="$router.push('/team')">
-          <div class="font-bold">Команда</div>
+            bg-violet-700 hover:bg-violet-800 active:bg-violet-900" @click="updateProjects">
+          <div class="font-bold">Проекты</div>
         </button>
       </div>
       <div class="mt-6 h-14" id="nav-button-side">
@@ -121,7 +121,13 @@
  import { mapGetters } from 'vuex';
   export default {
     computed: {
-      ...mapGetters(['getUsername','getFullname'])
+      ...mapGetters(['getUsername','getFullname','getProjects'])
+    },
+    methods: {
+      updateProjects() {
+        this.$store.commit('updateBoolProjects', 'getProjects')
+        this.$router.push('/team')
+      }
     }
   }
 </script>

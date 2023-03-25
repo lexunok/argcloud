@@ -39,8 +39,8 @@ const routes = [
       },
       {
         path: '/team',
-        name: 'Команда',
-        component: () => import( '@/views/Team.vue'),
+        name: 'Проекты',
+        component: () => import( '@/views/Projects.vue'),
       },
       {
         path: '/tools',
