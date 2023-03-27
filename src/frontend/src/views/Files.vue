@@ -39,14 +39,14 @@
     data() {
       return {
         InFolder: false,
-        folders: [ // список папок
+        folders: [
           {
             name: 'Мои файлы'
           },
         ],
       }
     },
-    methods: { //метод открытия папки
+    methods: { 
       openFolder() {
         if (this.InFolder == false) {
           this.InFolder = !this.InFolder

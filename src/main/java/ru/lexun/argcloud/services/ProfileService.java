@@ -18,7 +18,7 @@ public class ProfileService {
         this.userRepository = userRepository;
     }
     public User getUser(String username){
-        return userRepository.findByUsername(username).get();
+        return userRepository.findByUsername(username).orElseThrow();
     }
     public void save(User user){userRepository.save(user);}
 }

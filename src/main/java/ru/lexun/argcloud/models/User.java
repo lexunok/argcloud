@@ -36,6 +36,8 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private List<User> friends;
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    private List<Project> projects;
 
     @Enumerated(EnumType.STRING)
     private Role role;

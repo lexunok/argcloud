@@ -1,5 +1,6 @@
 package ru.lexun.argcloud.controllers;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.lexun.argcloud.config.Mapper;
@@ -28,6 +29,7 @@ public class FriendsController {
     }
 
     @PostMapping
+    @Transactional
     public ProfileDTO addFriend(@RequestBody FriendDTO friendDTO){
         User user = profileService.getUser(friendDTO.getUser());
         User friend = profileService.getUser(friendDTO.getFriend());
@@ -40,6 +42,7 @@ public class FriendsController {
 
     }
     @DeleteMapping
+    @Transactional
     public ProfileDTO deleteFriend(@RequestBody FriendDTO friendDTO){
         User user = profileService.getUser(friendDTO.getUser());
         User friend = profileService.getUser(friendDTO.getFriend());

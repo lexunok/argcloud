@@ -9,6 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.lexun.argcloud.services.FilesService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/files")
@@ -22,8 +25,16 @@ public class FileController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestPart MultipartFile file) throws IOException {
-        String fileName = filesService.uploadFile(path,file);
-        return new ResponseEntity<>(fileName + " successfully uploaded",HttpStatus.OK);
+    public ResponseEntity<List<String>> uploadFile(@RequestPart MultipartFile[] files) throws IOException {
+        List<String> fileNames = new ArrayList<>();
+        Arrays.stream(files).forEach(file -> {
+            try {
+                String name = filesService.uploadFile(path,file);
+                fileNames.add(name);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        return new ResponseEntity<>(fileNames,HttpStatus.OK);
     }
 }
