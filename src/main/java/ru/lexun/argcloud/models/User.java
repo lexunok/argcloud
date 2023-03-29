@@ -38,6 +38,8 @@ public class User implements UserDetails {
     private List<User> friends;
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<Project> projects;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<FileDB> files;
 
     @Enumerated(EnumType.STRING)
     private Role role;

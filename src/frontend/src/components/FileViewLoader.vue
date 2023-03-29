@@ -10,13 +10,14 @@
     </form>
     <div>
       <ul v-for="file in uploadedFiles">
-        <li>{{ file }}</li>
+        <li>{{ file.name }}</li>
       </ul>
     </div>
   </div>
 </template>
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex';
 
   /**
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
@@ -30,6 +31,7 @@ import axios from 'axios';
         progress: 0
       }
     },
+    computed: {...mapGetters(['getId'])},
     methods: {
       async sendFile(){
         this.uploading = true
@@ -38,9 +40,10 @@ import axios from 'axios';
         const arr = Array.from(files)
         arr.forEach( element => {
           formData.append('files', element)});
-        const response = await axios.post("/api/files/upload", formData, {
+        const response = await axios.post("/api/files/upload/" + this.getId, formData, {
           onUploadProgress: e => this.progress = Math.round(e.loaded * 100 / e.total)
         })
+        this.$store.commit('addFileToState',response.data)
         this.uploadedFiles = [...this.uploadedFiles, ...response.data]
         this.uploading = false
       }

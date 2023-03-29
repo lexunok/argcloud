@@ -1,6 +1,6 @@
 ﻿<template>
   <ul class="m-0 overflow-y-auto h-[30.5rem]" id="folderlist">
-    <li v-for="file in files" class="inline-block w-[11rem] h-[11rem] bg-cyan-400 my-2 mx-4 rounded-[20px]">
+    <li v-for="file in getFiles" class="inline-block w-[11rem] h-[11rem] bg-cyan-400 my-2 mx-4 rounded-[20px]">
       <div class="p-2 flex flex-col">
         <div class="flex">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#6d28d9" class="w-24 h-24 mx-auto">
@@ -8,72 +8,25 @@
             <path d="M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z" />
           </svg>
         </div>
-        <div class="h-10 w-full">{{file.name}}</div> 
+        <div class="h-10 w-full">
+          <a href={{file.url}}>
+            {{file.name}}
+          </a>
+        </div> 
         <div class="text-slate-700 text-sm">{{file.size}}</div> 
       </div>
     </li>
   </ul>
 </template>
 <script>
+import { mapGetters } from 'vuex';
+
   /**
     *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
     *  ��� ���������� �������������. ������ ������ ������ �� �����.
     */
   export default {
-    data() {
-      return {
-        files: [ 
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-          {
-            name: 'файл',
-            size: '5Mb'
-          },
-        ]
-      }
-    }
+    computed: {...mapGetters(['getFiles'])}
   }
 </script>
 <style>

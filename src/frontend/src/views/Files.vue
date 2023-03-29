@@ -33,8 +33,9 @@
 <script>
   import Navigation from "../components/Navigation.vue"
   import FileFolder from "../components/FileFolder.vue"
+import { mapActions, mapGetters } from "vuex"
   export default {
-
+    computed: mapGetters(['getId']),
     components: { Navigation, FileFolder },
     data() {
       return {
@@ -47,8 +48,10 @@
       }
     },
     methods: { 
+      ...mapActions(['setFiles']),
       openFolder() {
         if (this.InFolder == false) {
+          this.setFiles(this.getId)
           this.InFolder = !this.InFolder
         }
       }
