@@ -1,27 +1,30 @@
 ﻿<template>
   <Navigation />
-  <div class="container ml-36 mt-12 w-full h-[39rem]">
+  <div class="container ml-36 mt-12 w-[80rem] h-[39rem]">
     <div class="flex flex-row rounded-[20px] bg-violet-900 h-[38rem] ">
       <transition name="component-fade" mode="out-in" v-if="getBoolProjects">
         <div class="left-side">
-          <component :is="leftSideView"></component>
+          <component :is="leftSideView" @changeLView="leftSideView=$event"/>
         </div>
       </transition>
       <div class="flex flex-col justify-center items-center h-full w-full ">
         <transition name="component-fade" mode="out-in">
-          <component :is="startView"></component>
+          <component :is="startView" @changeRView="startView=$event" />
         </transition>
       </div>
     </div>
   </div>
 </template>
 <script>
-  import Start from "../components/ProjectStart.vue"
   import Navigation from "../components/Navigation.vue"
-  import ProjectList from "../components/UserProjectsList.vue"
+  import ProjectList from "../components/projects/UserProjectsList.vue"
+  import CreateProject from "../components/projects/CreateProject.vue"
+  import Start from "../components/projects/ProjectStart.vue"
+  import UserProject from "../components/projects/UserProject.vue"
+  import Members from "../components/projects/ProjectMembers.vue"
 import { mapGetters } from "vuex"
     export default {
-    components: { Start, Navigation, ProjectList },
+    components: { Navigation, ProjectList, CreateProject, Start, UserProject, Members},
         data() {
           return {
             leftSideView: 'ProjectList',
@@ -42,5 +45,14 @@ import { mapGetters } from "vuex"
   }
   .left-side {
     @apply w-[20rem] flex flex-col bg-violet-700 rounded-l-[20px];
+  }
+  .component-fade-enter-active,
+  .component-fade-leave-active {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .component-fade-enter-from,
+  .component-fade-leave-to {
+    opacity: 0;
   }
 </style>

@@ -64,7 +64,7 @@ import { mapActions, mapGetters } from "vuex"
   }
   .component-fade-enter-active,
   .component-fade-leave-active {
-    transition: opacity 0.1s ease;
+    transition: opacity 0.3s ease-in-out;
   }
 
   .component-fade-enter-from,

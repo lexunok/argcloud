@@ -108,5 +108,13 @@
   }
 </script>
 <style>
+  .component-fade-enter-active,
+  .component-fade-leave-active {
+    transition: opacity 0.3s ease-in-out;
+  }
 
+  .component-fade-enter-from,
+  .component-fade-leave-to {
+    opacity: 0;
+  }
 </style>

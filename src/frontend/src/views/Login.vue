@@ -1,4 +1,10 @@
 ﻿<template>
+  <div class="w-screen h-screen flex justify-center items-center fixed bg-violet-300 opacity-75" v-if="load">
+    <svg class="animate-spin h-32 w-32 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  </div>
   <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
             shadow-md hover:shadow-lg
             bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="$router.push('/')">
@@ -88,11 +94,13 @@
         username: "",
         password: "",
         inputType: '',
-        isFlag: true
+        isFlag: true,
+        load: false
       }
     },
     methods: {
       async sendForm() {
+        this.load = true
         const response = await axios.post("api/auth/login", {
           username: this.username,
           password: this.password
@@ -100,6 +108,7 @@
         localStorage.setItem("token", response.data.token)
         this.$store.dispatch('setUser', this.username)
         this.$store.dispatch('setFriends', this.username)
+        this.load = false
         this.$router.push("/profile")
       },
       clickBtn() {
@@ -153,4 +162,5 @@
         border-width: 1px;
         color: red;
       }
+  
 </style>

@@ -1,12 +1,6 @@
-<template>
+﻿<template>
   <div class="flex flex-col">
-    <div class="mx-auto text-white font-medium">
-      {{this.getChatName}}
-    </div>
-    <div class="mx-auto text-white">
-      Онлайн: null
-    </div>
-    <ul id="messageslist" class="overflow-y-auto overflow-x-hidden h-[26rem]">
+    <ul id="messageslist" class="overflow-y-auto overflow-x-hidden h-[20rem]">
       <li v-for="message in getMessages" :key="message.id" class="mt-2">
         <div class="w-full h-auto flex flex-row ml-2">
           <div class="mt-1">
@@ -35,11 +29,11 @@
         </label>
       </div>
       <div class="w-full my-auto">
-        <textarea  v-model="message"
-               placeholder="Введите сообщение..."
-               contenteditable="true"
-               class="focus:outline-none h-10 indent-2 placeholder:italic w-full resize-none"
-               @keyup.enter="sendMessageTo()">
+        <textarea v-model="message"
+                  placeholder="Введите сообщение..."
+                  contenteditable="true"
+                  class="focus:outline-none h-10 placeholder:italic w-full resize-none"
+                  @keyup.enter="sendMessageTo()">
         </textarea>
       </div>
       <div class="mr-2 my-auto">
@@ -58,37 +52,7 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
-  import { mapGetters, mapActions } from 'vuex'
   export default {
-    data() {
-      return {
-        message: null,
-      }
-    },
-    computed: {...mapGetters(['getMessages','getChatName','getFullname'])},
-    methods: {
-      ...mapActions(['sendMessage']),
-      async sendMessageTo() {
-        this.sendMessage({text:this.message,sender:this.getFullname})
-        this.message = ''
-      }
 
-    }
   }
 </script>
-<style>
-  #messageslist::-webkit-scrollbar {
-    width: 10px;
-    background-color: #6D28D9;
-  }
-
-  #messageslist::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: white;
-  }
-
-  #messageslist::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #6D28D9;
-  }
-</style>
