@@ -12,21 +12,20 @@
           <a href={{file.url}}>
             {{file.name}}
           </a>
-        </div> 
-        <div class="text-slate-700 text-sm">{{file.size}}</div> 
+        </div>
+        <div class="text-slate-700 text-sm">{{file.size}}</div>
       </div>
     </li>
   </ul>
 </template>
 <script>
-import { mapGetters } from 'vuex';
-
+  import { mapGetters } from 'vuex';
   /**
     *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
     *  ��� ���������� �������������. ������ ������ ������ �� �����.
     */
   export default {
-    computed: {...mapGetters(['getFiles'])}
+    computed: { ...mapGetters(['getFiles']) }
   }
 </script>
 <style>

@@ -12,8 +12,8 @@
           <a href={{file.url}}>
             {{file.name}}
           </a>
-        </div> 
-        <div class="ml-2 text-slate-700 text-sm my-auto">{{file.size}}</div> 
+        </div>
+        <div class="ml-2 text-slate-700 text-sm my-auto">{{file.size}}</div>
       </div>
     </li>
   </ul>
@@ -25,7 +25,7 @@
     */
   import { mapGetters } from 'vuex';
   export default {
-    computed: {...mapGetters(['getFiles'])}
+    computed: { ...mapGetters(['getFiles']) }
   }
 </script>
 <style>

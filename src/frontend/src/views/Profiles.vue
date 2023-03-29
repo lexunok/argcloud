@@ -65,9 +65,9 @@
 </template>
 <script>
   import Navigation from '../components/Navigation.vue'
-  import ProfileFriend from '../components/ProfileFriend.vue'
-  import FriendList from '../components/FriendList.vue'
-  import ProfileButtons from '../components/ProfileButtons.vue'
+  import ProfileFriend from '../components/profile/ProfileFriend.vue'
+  import FriendList from '../components/profile/FriendList.vue'
+  import ProfileButtons from '../components/profile/ProfileButtons.vue'
   import { mapGetters } from 'vuex'
   export default {
     components: { Navigation, ProfileFriend, FriendList, ProfileButtons },
@@ -92,7 +92,7 @@
   }
   .component-fade-enter-active,
   .component-fade-leave-active {
-    transition: opacity 1s ease;
+    transition: opacity 0.3s ease-in-out;
   }
 
   .component-fade-enter-from,

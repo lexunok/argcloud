@@ -42,7 +42,7 @@
 </template>
 <script>
   import { mapGetters, mapActions } from "vuex"
-  import InChat from "../components/InChat.vue"
+  import InChat from "../components/chat/InChat.vue"
   import Navigation from "../components/Navigation.vue"
     export default {
     computed: {...mapGetters(['getFriends','getId'])},
@@ -72,15 +72,15 @@
   body {
     background: linear-gradient(90deg, rgb(99 102 241), rgb(139 92 246));
   }
-    .component-fade-enter-active,
-    .component-fade-leave-active {
-        transition: opacity 0.1s ease;
-    }
+  .component-fade-enter-active,
+  .component-fade-leave-active {
+    transition: opacity 0.3s ease-in-out;
+  }
 
-    .component-fade-enter-from,
-    .component-fade-leave-to {
-        opacity: 0;
-    }
+  .component-fade-enter-from,
+  .component-fade-leave-to {
+    opacity: 0;
+  }
   .search {
     @apply transition duration-150 ease-in-out rounded-full w-8 h-8 mt-1 hover:bg-slate-300 active:bg-slate-400;
   }
