@@ -58,7 +58,7 @@
     </div>
     <div class="mt-8 pr-5 pl-5 bg-violet-700 rounded-[20px] w-full h-[30rem]">
       <transition name="component-fade" mode="out-in">
-        <component :is="projectView" @changeRView="startView=$event" />
+        <component :is="projectView" />
       </transition>
     </div>
   </div>

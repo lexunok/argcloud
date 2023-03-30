@@ -21,10 +21,19 @@ export default {
       if (projects != null) {
         state.haveProjects = true
       }
+    },
+    updateSelectProject(state) {
+      if (state.selectProject == false) {
+        state.selectProject = true
+      }
+      else if (state.selectProject == true) {
+        state.selectProject = true
+      }
     }
   },
   state: {
     haveProjects: false,
+    selectProject: false,
     projects: []
   },
   getters: {
@@ -33,6 +42,9 @@ export default {
     },
     getBoolProjects(state) {
       return state.haveProjects
+    },
+    getBoolSelectProject(state) {
+      return state.selectProject
     }
   }
 }
