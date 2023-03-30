@@ -32,7 +32,7 @@
 </template>
 <script>
   import Navigation from "../components/Navigation.vue"
-  import FileFolder from "../components/FileFolder.vue"
+  import FileFolder from "../components/files/FileFolder.vue"
 import { mapActions, mapGetters } from "vuex"
   export default {
     computed: mapGetters(['getId']),

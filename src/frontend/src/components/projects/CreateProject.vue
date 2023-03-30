@@ -24,7 +24,7 @@
                    required
                    class="peer rounded h-10 w-52 indent-2 focus:outline-none focus:ring-1 focus:ring-cyan-400 disabled:ring-slate-500 focus:invalid:ring-red-600"
                    v-model="projectname"
-                   @keyup.enter="" />
+                   @keyup.enter="this.createProject({id:getId,name:projectname})" />
             <p class="mt-2 invisible peer-focus:peer-invalid:visible text-pink-600 text-sm w-60 mb-1">
               Это поле не должно быть пустым.
             </p>
@@ -69,7 +69,7 @@
             <li v-for="friend in getFriends">
               <div class="flex flex-row h-auto mt-1">
                 <div class="my-auto">
-                  <img class="rounded-full container w-10 h-10" src="../assets/nonimg.jpg" />
+                  <img class="rounded-full container w-10 h-10" src="../../assets/nonimg.jpg" />
                 </div>
                 <div class="ml-4 my-auto w-full overflow-hidden">
                   <div>{{friend.fullname}}</div>
@@ -111,10 +111,16 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
-  import { mapGetters } from 'vuex';
+  import { mapGetters,mapActions } from 'vuex';
   export default {
-    computed: { ...mapGetters(['getFriends']) },
+    data(){
+        return {
+          projectname: null
+        }
+    },
+    computed: { ...mapGetters(['getFriends','getId']) },
     methods: {
+      ...mapActions(['createProject']),
       openUserProject() {
         this.$emit('changeRView', 'UserProject')
         this.$emit('changeLView', 'Members')

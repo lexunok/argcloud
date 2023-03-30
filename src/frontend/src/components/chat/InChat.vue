@@ -10,7 +10,7 @@
       <li v-for="message in getMessages" :key="message.id" class="mt-2">
         <div class="w-full h-auto flex flex-row ml-2">
           <div class="mt-1">
-            <img class="rounded-full container ml-3 w-10 h-auto" src="../assets/nonimg.jpg" />
+            <img class="rounded-full container ml-3 w-10 h-auto" src="../../assets/nonimg.jpg" />
           </div>
           <div class="h-auto w-auto">
             <p class="flex h-auto text-white ml-3 w-auto">{{ message.sender }}</p>

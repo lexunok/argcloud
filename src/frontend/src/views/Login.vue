@@ -108,6 +108,7 @@
         localStorage.setItem("token", response.data.token)
         this.$store.dispatch('setUser', this.username)
         this.$store.dispatch('setFriends', this.username)
+        this.$store.dispatch('setProjects', response.data.id)
         this.load = false
         this.$router.push("/profile")
       },

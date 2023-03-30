@@ -22,7 +22,7 @@
   import Start from "../components/projects/ProjectStart.vue"
   import UserProject from "../components/projects/UserProject.vue"
   import Members from "../components/projects/ProjectMembers.vue"
-import { mapGetters } from "vuex"
+import { mapActions, mapGetters } from "vuex"
     export default {
     components: { Navigation, ProjectList, CreateProject, Start, UserProject, Members},
         data() {
@@ -34,6 +34,9 @@ import { mapGetters } from "vuex"
     computed: {
       ...mapGetters(['getBoolProjects'])
     },
+    methods:{
+      ...mapActions(['setProjects'])
+    }
         }
 </script>
 <style>

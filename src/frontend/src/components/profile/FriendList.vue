@@ -3,7 +3,7 @@
     <li v-for="friend in getFriends">
       <div class="flex flex-row h-auto mt-1">
         <div class="my-auto">
-          <img class="rounded-full container w-10 h-10" src="../assets/nonimg.jpg" />
+          <img class="rounded-full container w-10 h-10" src="../../assets/nonimg.jpg" />
         </div>
         <div class="ml-4 my-auto w-full overflow-hidden">
           <div>{{friend.fullname}}</div>
