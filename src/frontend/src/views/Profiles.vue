@@ -26,10 +26,10 @@
   <div class="ml-20 flex flex-row mt-12">
     <div class="ml-20 w-1/2 h-[26rem] bg-white rounded-[30px] overflow-hidden">
       <div class="bg-violet-700 flex flex-row">
-        <div v-if="view!='ProfileButtons'" class="flex basis-1/4">
+        <div v-if="getProfileView != 'ProfileButtons'" class="flex basis-1/4">
           <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
             shadow-md hover:shadow-lg my-auto ml-5
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="view='ProfileButtons'">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="changeToProfileButtons">
             <div class="flex flex-row">
               <div class="ml-3">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#6D28D9" class="w-5 h-5">
@@ -44,7 +44,7 @@
       </div>
       <div class="">
         <transition name="component-fade" mode="out-in">
-          <component :is="view" @changeCard="view=$event" />
+          <component :is="getProfileView"  />
         </transition>
       </div>
     </div>
@@ -68,17 +68,19 @@
   import ProfileFriend from '../components/profile/ProfileFriend.vue'
   import FriendList from '../components/profile/FriendList.vue'
   import ProfileButtons from '../components/profile/ProfileButtons.vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters,mapMutations } from 'vuex'
   export default {
     components: { Navigation, ProfileFriend, FriendList, ProfileButtons },
     data(){
       return{
-        view: 'ProfileButtons',
         logo: "./assets/logo.png",
       }
     },
     computed: {
-      ...mapGetters(['getUsername','getFullname'])
+      ...mapGetters(['getUsername','getFullname','getProfileView'])
+    },
+    methods: {
+      ...mapMutations(['changeToProfileButtons'])
     }
 
   }

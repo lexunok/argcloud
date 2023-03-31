@@ -3,11 +3,7 @@
     <button type="button" class="transition duration-150 ease-in-out w-auto h-auto rounded m-3
             shadow-md hover:shadow-lg
             bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600"
-            @click="$emit('changeView',
-              {
-              startView: 'CreateProject',
-              leftSideView: 'ProjectList'
-              })">
+            @click="changeViewToCreateProject">
       <div class="flex flex-row p-2 m-1">
         <div class="font-sans text-sm text-violet-700 font-medium">СОЗДАТЬ ПРОЕКТ</div>
         <div class="ml-3">
@@ -20,11 +16,7 @@
     <button type="button" class="transition duration-150 ease-in-out w-auto h-auto rounded m-3
             shadow-md hover:shadow-lg
             bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600"
-            @click="$emit('changeView',
-              {
-              startView: 'ProjectJoin',
-              leftSideView: 'AllProject'
-              })">
+            @click="changeViewToJoinProject">
       <div class="flex flex-row p-2 m-1">
         <div class="font-sans text-sm text-violet-700 font-medium">ПРИСОЕДИНИТЬСЯ К ПРОЕКТУ</div>
         <div class="ml-3">
@@ -42,11 +34,11 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
-    export default {
-    data() {
-        return {
-
-        }
+  import {mapMutations } from 'vuex'
+  export default {
+    methods: {
+      ...mapMutations(['changeViewToCreateProject']),
+      ...mapMutations(['changeViewToJoinProject'])
     }
     }
 </script>

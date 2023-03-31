@@ -5,11 +5,11 @@
       <transition name="component-fade" mode="out-in" v-if="getBoolProjects">
         <div class="left-side">
           <div class="p-5">
-            <div class="transition duration-150 ease-in-out" v-if="startView=='UserProject' || startView=='ProjectJoin'">
+            <div class="transition duration-150 ease-in-out" v-if="getRightView=='UserProject' || getRightView=='ProjectJoin'">
               <button type="button" class="transition duration-150 ease-in-out w-full h-auto rounded
             shadow-md hover:shadow-lg my-auto
             bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600"
-                      @click="startView= 'Start'; leftSideView= 'ProjectList'">
+                      @click="changeViewToStartProject">
                 <div class="flex flex-row p-2">
                   <div class="font-sans mx-auto text-sm text-violet-700 font-medium">Вернуться к выбору проектов</div>
                 </div>
@@ -18,7 +18,7 @@
             shadow-md hover:shadow-lg my-auto
             bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600"
                       @click=""
-                      v-if="startView=='UserProject'">
+                      v-if="getRightView=='UserProject'">
                 <div class="flex flex-row p-2">
                   <div class="font-sans mx-auto text-sm text-violet-700 font-medium">Пригласить</div>
                 </div>
@@ -26,13 +26,13 @@
             </div>
           </div>
           <div>
-            <component :is="leftSideView" @changeView="changeSide" />
+            <component :is="getLeftView"  />
           </div>
         </div>
       </transition>
       <div class="flex flex-col justify-center items-center h-full w-full ">
         <transition name="component-fade" mode="out-in">
-          <component :is="startView" @changeView="changeSide" />
+          <component :is="getRightView"  />
         </transition>
       </div>
     </div>
@@ -47,24 +47,15 @@
   import Members from "../components/projects/ProjectMembers.vue"
   import ProjectJoin from "../components/projects/ProjectJoin.vue"
   import AllProject from "../components/projects/AllProjectList.vue"
-import { mapActions, mapGetters } from "vuex"
+import { mapActions, mapGetters, mapMutations } from "vuex"
     export default {
     components: { Navigation, ProjectList, CreateProject, Start, UserProject, Members, ProjectJoin, AllProject},
-        data() {
-          return {
-            leftSideView: 'ProjectList',
-            startView: 'Start'
-          }
-    },
     computed: {
-      ...mapGetters(['getBoolProjects'])
+      ...mapGetters(['getBoolProjects','getRightView','getLeftView'])
     },
-    methods:{
+    methods:{ 
       ...mapActions(['setProjects']),
-      changeSide(emitPayload) {
-        this.startView = emitPayload.startView
-        this.leftSideView = emitPayload.leftSideView
-      }
+      ...mapMutations(['changeViewToStartProject'])
     }
         }
 </script>

@@ -4,11 +4,7 @@
       <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
             shadow-md hover:shadow-lg my-auto ml-5
             bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600"
-              @click="$emit('changeView',
-              {
-              startView: 'Start',
-              leftSideView: 'ProjectList'
-              })">
+              @click="changeViewToStartProject">
         <div class="flex flex-row">
           <div class="ml-3">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#6D28D9" class="w-5 h-5">
@@ -103,11 +99,7 @@
     <div class="mt-5">
       <button type="button" class="transition duration-150 ease-in-out w-auto h-auto p-3 rounded
             shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="$emit('changeView',
-              {
-              startView: 'UserProject',
-              leftSideView: 'Members'
-              })">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="changeViewToUserProject">
         <div class="flex flex-row">
           <div class="font-sans text-sm text-violet-700 font-medium">СОЗДАТЬ</div>
         </div>
@@ -120,7 +112,7 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
-  import { mapGetters,mapActions } from 'vuex';
+  import { mapGetters,mapActions,mapMutations } from 'vuex';
   export default {
     data(){
         return {
@@ -129,7 +121,9 @@
     },
     computed: { ...mapGetters(['getFriends','getId']) },
     methods: {
-      ...mapActions(['createProject'])
+      ...mapActions(['createProject']),
+      ...mapMutations(['changeViewToStartProject']),
+      ...mapMutations(['changeViewToUserProject'])
     }
   }
 </script>

@@ -3,7 +3,7 @@
     <div class="flex flex-row">
       <button type="button" class="h-36 bg-violet-700 rounded-xl m-3 basis-1/3 flex
                   hover:bg-violet-800 active:bg-violet-900"
-              @click="$emit('changeCard','ProfileFriend')">
+              @click="changeToProfileFriends">
         <div class="font-bold text-white mx-auto my-auto text-3xl">Друзья</div>
       </button>
       <button type="button" class="h-36 bg-violet-700 rounded-xl m-3 basis-1/3 flex
@@ -36,7 +36,10 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
+  import {mapMutations } from 'vuex'
   export default {
-    
+    methods: {
+      ...mapMutations(['changeToProfileFriends'])
+    }
   }
 </script>

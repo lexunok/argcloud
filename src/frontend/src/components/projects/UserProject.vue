@@ -2,7 +2,7 @@
   <div class="pl-10 pr-10 rounded-r-[20px] w-full h-full flex flex-col">
     <div class="flex flex-row bg-violet-700 rounded-b-[20px] mx-auto">
       <div class="p-3">
-        <button type="button" class="project-button" @click="projectView='About'">
+        <button type="button" class="project-button" @click="changeToAbout">
           <div class="flex flex-row p-2 text-violet-700 font-medium">
             <div class="mx-auto">
               ОПИСАНИЕ
@@ -11,7 +11,7 @@
         </button>
       </div>
       <div class="p-3">
-        <button type="button" class="project-button" @click="projectView='Chat'">
+        <button type="button" class="project-button" @click="changeToChat">
           <div class="flex flex-row p-2 text-violet-700 font-medium">
             <div class="mx-auto">
               ЧАТ
@@ -20,7 +20,7 @@
         </button>
       </div>
       <div class="p-3">
-        <button type="button" class="project-button" @click="projectView='Desk'">
+        <button type="button" class="project-button" @click="changeToDesk">
           <div class="flex flex-row p-2 text-violet-700 font-medium">
             <div class="mx-auto">
               ДОСКА
@@ -29,7 +29,7 @@
         </button>
       </div>
       <div class="p-3">
-        <button type="button" class="project-button" @click="projectView='Calendar'">
+        <button type="button" class="project-button" @click="changeToCalendar">
           <div class="flex flex-row p-2 text-violet-700 font-medium">
             <div class="mx-auto">
               КАЛЕНДАРЬ
@@ -38,7 +38,7 @@
         </button>
       </div>
       <div class="p-3">
-        <button type="button" class="project-button" @click="projectView='Tools'">
+        <button type="button" class="project-button" @click="changeToTools">
           <div class="flex flex-row p-2 text-violet-700 font-medium">
             <div class="mx-auto">
               ИНСТРУМЕНТЫ
@@ -47,7 +47,7 @@
         </button>
       </div>
       <div class="p-3">
-        <button type="button" class="project-button" @click="projectView='News'">
+        <button type="button" class="project-button" @click="changeToNews">
           <div class="flex flex-row p-2 text-violet-700 font-medium">
             <div class="mx-auto">
               НОВОСТИ
@@ -58,7 +58,7 @@
     </div>
     <div class="mt-8 pr-5 pl-5 bg-violet-700 rounded-[20px] w-full h-[30rem]">
       <transition name="component-fade" mode="out-in">
-        <component :is="projectView" />
+        <component :is="getProjectView" />
       </transition>
     </div>
   </div>
@@ -76,13 +76,14 @@
   import Calendar from "../projects/ProjectCalendar.vue"
   import Tools from "../projects/ProjectTools.vue"
   import News from "../projects/ProjectNews.vue"
+  import {mapMutations, mapGetters } from 'vuex'
   export default {
-    components: {About, Chat, Desk, Calendar, Tools, News},
-    data(){
-
-      return {
-        projectView: 'About',
-      }
+    components: { About, Chat, Desk, Calendar, Tools, News },
+    computed: {
+      ...mapGetters(['getProjectView'])
+    },
+    methods: {
+      ...mapMutations(['changeToAbout','changeToChat','changeToDesk','changeToCalendar','changeToTools','changeToNews'])
     }
   }
 </script>

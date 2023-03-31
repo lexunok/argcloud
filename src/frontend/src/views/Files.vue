@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="w-[73rem]  bg-violet-900 rounded-[30px]"> 
-        <transition name="component-fade" mode="out-in" v-if="InFolder">
+        <transition name="component-fade" mode="out-in" v-if="getBoolInFolder">
           <FileFolder />
         </transition>
       </div>
@@ -33,13 +33,12 @@
 <script>
   import Navigation from "../components/Navigation.vue"
   import FileFolder from "../components/files/FileFolder.vue"
-import { mapActions, mapGetters } from "vuex"
+import { mapActions, mapGetters,mapMutations } from "vuex"
   export default {
-    computed: mapGetters(['getId']),
+    computed: mapGetters(['getId','getBoolInFolder']),
     components: { Navigation, FileFolder },
     data() {
       return {
-        InFolder: false,
         folders: [
           {
             name: 'Мои файлы'
@@ -49,11 +48,10 @@ import { mapActions, mapGetters } from "vuex"
     },
     methods: { 
       ...mapActions(['setFiles']),
+      ...mapMutations(['changeInFolderStatus']),
       openFolder() {
-        if (this.InFolder == false) {
-          this.setFiles(this.getId)
-          this.InFolder = !this.InFolder
-        }
+        this.setFiles(this.getId),
+        this.changeInFolderStatus()
       }
     }
   }

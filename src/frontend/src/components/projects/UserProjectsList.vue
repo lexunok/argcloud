@@ -2,7 +2,7 @@
   <div class="p-5">
     <ul class="overflow-y-auto h-[34rem]">
       <li v-for="project in getProjects">
-        <button type="button" @click="openFolder" class="transition duration-150 ease-in-out w-56 h-14 ml-3 mt-2 bg-slate-50 hover:bg-slate-300 active:bg-slate-400">
+        <button type="button" @click="changeViewToUserProject" class="transition duration-150 ease-in-out w-56 h-14 ml-3 mt-2 bg-slate-50 hover:bg-slate-300 active:bg-slate-400">
           <div class="flex flex-row ml-3">
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -23,15 +23,15 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
-  import { mapGetters } from 'vuex';
+  import { mapGetters,mapMutations } from 'vuex';
     export default {
-    data() {
-        return {
-          
-        }
-    },
-    computed: { ...mapGetters(['getProjects']) }
+    computed: { ...mapGetters(['getProjects']) },
+    methods: {
+
+      ...mapMutations(['changeViewToUserProject'])
     }
+  }
+  
 </script>
 <style>
 </style>

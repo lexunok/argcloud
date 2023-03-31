@@ -33,34 +33,28 @@
     </div>
   <div class="ml-4 w-[48rem] h-[40rem] bg-violet-700 rounded-xl">
     <div class="p-4">
-      <transition name="component-fade" mode="out-in" v-if="InChat">
-        <InChat/>
+      <transition name="component-fade" mode="out-in" v-if="getBoolInChat">
+        <component :is="getChatView"/>
       </transition>
     </div>
   </div>
   </div>
 </template>
 <script>
-  import { mapGetters, mapActions } from "vuex"
-  import InChat from "../components/chat/InChat.vue"
+  import { mapGetters, mapActions,mapMutations } from "vuex"
+  import Chat from "../components/chat/InChat.vue"
   import Navigation from "../components/Navigation.vue"
     export default {
-    computed: {...mapGetters(['getFriends','getId'])},
-    components: { InChat, Navigation },
-    data() {
-      return {
-          InChat: false,
-          }
-        },
+    computed: { ...mapGetters(['getFriends', 'getId', 'getChatView','getBoolInChat'])},
+    components: { Chat, Navigation },
     methods: {
-      ...mapActions(['setMessages','setChatId']),
+      ...mapActions(['setMessages', 'setChatId']),
+      ...mapMutations(['openChatBool']),
       async openchat(id, name) {
         const chatId = this.getId * id
         this.setMessages(chatId)
         this.$store.commit('updateChatName',name)
-        if(this.InChat===false){
-          this.InChat = !this.InChat
-        }
+        this.openChatBool()
       }
     }
   }
@@ -74,7 +68,7 @@
   }
   .component-fade-enter-active,
   .component-fade-leave-active {
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.1s ease-in-out;
   }
 
   .component-fade-enter-from,
