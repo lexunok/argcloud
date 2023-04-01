@@ -25,7 +25,7 @@
                    required
                    class="peer rounded h-10 w-52 indent-2 focus:outline-none focus:ring-1 focus:ring-cyan-400 disabled:ring-slate-500 focus:invalid:ring-red-600"
                    v-model="projectname"
-                   @keyup.enter="this.createProject({id:getId,name:projectname})" />
+                   @keyup.enter="createUserProject" />
             <p class="mt-2 invisible peer-focus:peer-invalid:visible text-pink-600 text-sm w-60 mb-1">
               Это поле не должно быть пустым.
             </p>
@@ -99,7 +99,7 @@
     <div class="mt-5">
       <button type="button" class="transition duration-150 ease-in-out w-auto h-auto p-3 rounded
             shadow-md hover:shadow-lg
-            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="changeViewToUserProject">
+            bg-cyan-400 hover:bg-cyan-500 active:bg-cyan-600" @click="createUserProject">
         <div class="flex flex-row">
           <div class="font-sans text-sm text-violet-700 font-medium">СОЗДАТЬ</div>
         </div>
@@ -122,8 +122,11 @@
     computed: { ...mapGetters(['getFriends','getId']) },
     methods: {
       ...mapActions(['createProject']),
-      ...mapMutations(['changeViewToStartProject']),
-      ...mapMutations(['changeViewToUserProject'])
+      ...mapMutations(['changeViewToStartProject', 'changeViewToUserProject']),
+      createUserProject() {
+        this.createProject({ id: this.getId, name: this.projectname })
+        this.changeViewToUserProject()
+      }
     }
   }
 </script>

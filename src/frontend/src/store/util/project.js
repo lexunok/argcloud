@@ -1,32 +1,30 @@
 export default {
   mutations: {
-    changeViewToStartProject(state) {
-      state.leftView = 'ProjectList',
-      state.rightView = 'Start'
+    changeToAbout(state) {
+      state.projectView = 'About'
     },
-    changeViewToCreateProject(state) {
-      state.leftView = 'ProjectList',
-      state.rightView = 'CreateProject'
+    changeToChat(state) {
+      state.projectView = 'Chat'
     },
-    changeViewToJoinProject(state) {
-      state.leftView = 'AllProject',
-      state.rightView = 'ProjectJoin'
+    changeToDesk(state) {
+      state.projectView = 'Desk'
     },
-    changeViewToUserProject(state) {
-      state.leftView = 'Members',
-      state.rightView = 'UserProject'
+    changeToCalendar(state) {
+      state.projectView = 'Calendar'
     },
-},
+    changeToTools(state) {
+      state.projectView = 'Tools'
+    },
+    changeToNews(state) {
+      state.projectView = 'News'
+    }
+  },
   state: {
-    leftView: 'ProjectList',
-    rightView: 'Start'
-},
+    projectView: 'About'
+  },
   getters: {
-    getLeftView(state) {
-      return state.leftView
-    },
-    getRightView(state) {
-      return state.rightView
+    getProjectView(state) {
+      return state.projectView
     }
   }
 }

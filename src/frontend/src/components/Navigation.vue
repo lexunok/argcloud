@@ -120,14 +120,15 @@
   *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
   *  ��� ���������� �������������. ������ ������ ������ �� �����.
   */
- import { mapGetters } from 'vuex';
+ import { mapGetters, mapMutations } from 'vuex';
   export default {
     computed: {
       ...mapGetters(['getUsername','getFullname','getProjects'])
     },
     methods: {
+      ...mapMutations(['updateBoolProjects']),
       updateProjects() {
-        this.$store.commit('updateBoolProjects', 'getProjects')
+        this.updateBoolProjects()
         this.$router.push('/team')
       }
     }

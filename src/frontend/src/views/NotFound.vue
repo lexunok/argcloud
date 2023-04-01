@@ -1,8 +1,11 @@
-<template>
-    <v-app>
-        OOPS! PAGE IS NOT FOUND
-    </v-app>
+﻿<template>
+    <div>ты кто такой а ну пошёл отсюда</div>
 </template>
 <script>
-export default{}
+  /**
+    *  ���� �������� ���-�� �� �� ANSII (EN), ��  ������������� ����� ������� ��������� UTF-8
+    *  ��� ���������� �������������. ������ ������ ������ �� �����.
+    */
+  export default {
+  }
 </script>

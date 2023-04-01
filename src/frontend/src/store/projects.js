@@ -5,8 +5,9 @@ export default {
       const response = await axios.get("/api/projects/" + id)
       commit('updateAllProject',response.data)
     },
-    async createProject({commit},{id, name}){
-      const response = await axios.post("/api/projects/" + id, {name})
+    async createProject({commit,state},{id, name}){
+      const response = await axios.post("/api/projects/" + id, { name })
+      commit('updateBoolProjects',state.projects)
       commit('updateLocalProject',response.data)
     }
   },
