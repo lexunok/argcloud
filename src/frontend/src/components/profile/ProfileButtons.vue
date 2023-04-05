@@ -25,8 +25,9 @@
         <div class="font-bold text-white mx-auto my-auto text-3xl"></div>
       </button>
       <button type="button" class="h-36 bg-violet-700 rounded-xl m-3 basis-1/3 flex
-                  hover:bg-violet-900 cursor-not-allowed">
-        <div class="font-bold text-white mx-auto my-auto text-3xl"></div>
+                  hover:bg-violet-800 active:bg-violet-900"
+              @click="changeToUserSettings">
+        <div class="font-bold text-white mx-auto my-auto text-3xl">Настройки</div>
       </button>
     </div>
   </div>
@@ -39,7 +40,7 @@
   import {mapMutations } from 'vuex'
   export default {
     methods: {
-      ...mapMutations(['changeToProfileFriends'])
+      ...mapMutations(['changeToProfileFriends','changeToUserSettings'])
     }
   }
 </script>

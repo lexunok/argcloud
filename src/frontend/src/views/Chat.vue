@@ -1,7 +1,7 @@
 <template>
   <Navigation />
-  <div class="flex flex-row mt-10">
-    <div class="ml-72  w-64 h-[40rem] bg-violet-700 flex flex-col">
+  <div class="flex flex-row justify-center items-center h-screen ml-10">
+    <div class="w-64 h-[40rem] bg-violet-700 flex flex-col ">
       <div class="bg-white ml-2 w-60 rounded-full flex flex-row mt-5 ">
         <div class="">
           <input type="text"

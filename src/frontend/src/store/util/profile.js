@@ -5,6 +5,9 @@ export default {
     },
     changeToProfileFriends(state) {
       state.profileView = 'ProfileFriend'
+    },
+    changeToUserSettings(state) {
+      state.profileView = 'UserSettings'
     }
   },
   state: {

@@ -1,15 +1,15 @@
 ﻿<template>
   <div class="flex flex-col">
-    <div class="bg-white ml-2 w-full rounded-full flex flex-row h-12">
+    <div class="pl-2 pr-2 w-full flex flex-row h-12">
       <div class="bg-violet-500 rounded-full w-full my-auto">
         <input type="text"
                placeholder="Поиск"
-               class="focus:outline-none rounded-full w-full h-10 indent-2 text-white"
+               class="pl-3 pr-3 focus:outline-none rounded-full w-full h-10  text-white"
                v-model="search"
                @input="searchFriend()"
                @keyup.enter="searchFriend()"/>
       </div>
-      <div class="mr-5 my-auto">
+      <div class="ml-2 my-auto">
         <button type="button" @click="searchFriend()" class="transition duration-150 ease-in-out rounded-full w-8 h-8  hover:bg-slate-300 active:bg-slate-400">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />

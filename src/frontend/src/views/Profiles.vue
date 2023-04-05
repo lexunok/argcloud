@@ -24,8 +24,9 @@
     </div>
   </div>
   <div class="ml-20 flex flex-row mt-12">
-    <div class="ml-20 w-1/2 h-[26rem] bg-white rounded-[30px] overflow-hidden">
-      <div class="bg-violet-700 flex flex-row">
+    <div class="ml-20 w-1/2">
+      <div 
+           :class="{'bg-violet-700': violet, 'flex flex-row rounded-t-[30px] h-[4rem]': main}">
         <div v-if="getProfileView != 'ProfileButtons'" class="flex basis-1/4">
           <button type="button" class="transition duration-150 ease-in-out w-36 h-9 rounded
             shadow-md hover:shadow-lg my-auto ml-5
@@ -42,24 +43,22 @@
         </div>
         <div class="text-white p-4 font-medium text-lg mx-auto ">Сервисы</div>
       </div>
-      <div class="">
+      <div class=" bg-white rounded-b-[30px] h-[22rem]">
         <transition name="component-fade" mode="out-in">
           <component :is="getProfileView"  />
         </transition>
       </div>
     </div>
-    <div class="ml-32 w-80 h-[26rem] bg-white rounded-[30px]">
-      <div class="h-[26rem] bg-white rounded-[30px] overflow-hidden">
-        <div class="bg-violet-700 flex">
-          <div class="text-white p-4 font-medium text-lg mx-auto">Список друзей</div>
-        </div>
-        <div class="p-3">
-          <transition name="component-fade" mode="out-in">
-            <FriendList />
-          </transition>
-        </div>
+    <div class="ml-32 w-80">
+      <div class="bg-violet-700 flex rounded-t-[30px] h-[4rem]">
+        <div class="text-white p-4 font-medium text-lg mx-auto">Список друзей</div>
       </div>
+      <div class="p-3 bg-white rounded-b-[30px] h-[22rem]">
+        <transition name="component-fade" mode="out-in">
+          <FriendList />
+        </transition>
       </div>
+    </div>
     </div>
   
 </template>
@@ -68,12 +67,15 @@
   import ProfileFriend from '../components/profile/ProfileFriend.vue'
   import FriendList from '../components/profile/FriendList.vue'
   import ProfileButtons from '../components/profile/ProfileButtons.vue'
+  import UserSettings from '../components/profile/UserSettings.vue'
   import { mapGetters,mapMutations } from 'vuex'
   export default {
-    components: { Navigation, ProfileFriend, FriendList, ProfileButtons },
-    data(){
+    components: { Navigation, ProfileFriend, FriendList, ProfileButtons, UserSettings },
+    data() {
       return{
         logo: "./assets/logo.png",
+        violet: true,
+        main: true,
       }
     },
     computed: {
